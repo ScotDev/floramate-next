@@ -5,14 +5,13 @@ import Spinner from '../mini-components/Spinner';
 
 import Card from './Card';
 import { ResultsGrid } from '../styled-components/Utils';
+import { RegularText } from '../styled-components/Text';
 import { SearchSection, SearchBox, SearchBtn, ResultsHeading, FilterBar, FilterBarWrapper, IconWrapper, FilterSelect } from './SearchUIComponents';
 
 
 const APIurl = "https://floramate-cms.herokuapp.com"
 
 export default function Search({ staticData }) {
-
-    console.log(staticData)
 
     // Transition all to redux
     const [error, setError] = useState(null);
@@ -73,16 +72,18 @@ export default function Search({ staticData }) {
                 const res = await fetch(`${APIurl}/profiles?_limit=${limit}${difficultyFilter}${plantTypeFilter}${sunFilter}${moistureFilter}`);
                 const formattedRes = await res.json();
                 if (formattedRes.length === 0) {
-                    setError("No results found")
+                    setTimeout(() => {
+                        setIsLoading(false);
+                        setError("No results found, please modify your search")
+                    }, 1000);
+
                 }
                 setData(formattedRes);
                 setTimeout(() => {
                     setIsLoading(false);
-                }, 300);
-
+                }, 1500);
             } catch (err) {
                 setError(err);
-                // console.log(defaultData)
                 setData(staticData);
                 setIsLoading(false);
                 console.log("Error loading data from API: ", err)
@@ -180,9 +181,10 @@ export default function Search({ staticData }) {
                     </FilterSelect>
                 </FilterBar>
             </FilterBarWrapper>
+            {error && (<RegularText style={{ textAlign: "center" }}>{error}</RegularText>)}
 
             <ResultsGrid>
-                {error && (<p>{error}</p>)}
+
                 {isLoading ? (<Spinner />) : items}
             </ResultsGrid>
         </>

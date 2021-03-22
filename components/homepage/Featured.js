@@ -1,12 +1,10 @@
 import React from 'react';
 
-import useAPI from '../../hooks/useApi'
+// import useAPI from '../../hooks/useApi'
 
 
 import Card from '../search/Card';
 import { ResultsGrid } from '../styled-components/Utils';
-
-// const APIurl = "https://floramate-cms.herokuapp.com"
 
 
 export default function Featured({ data }) {

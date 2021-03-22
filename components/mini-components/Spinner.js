@@ -3,11 +3,9 @@ import React from 'react';
 export default function Spinner() {
     return (
         <div className="spinner">
-            <div className="rect1"></div>
-            <div className="rect2"></div>
-            <div className="rect3"></div>
-            <div className="rect4"></div>
-            <div className="rect5"></div>
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
         </div>
     )
 }
