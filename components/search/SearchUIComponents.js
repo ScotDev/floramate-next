@@ -4,23 +4,25 @@ import { motion } from "framer-motion";
 import { device } from '../../config/Breakpoints';
 
 const SearchSection = styled(motion.div)`
-  background: url("https://images.pexels.com/photos/4275885/pexels-photo-4275885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920");
+  background: url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1616435022/search_bg_2616e6cf8c.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height:300px;
+  height:450px;
   /* margin: 0 0 2rem 0; */
-  padding: 4.5rem 0 0 0;
+  padding: 175px 0 0 0;
   text-align: center;
   box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
     0 3px 7px -3px rgb(0 0 0 / 30%);
 
     h2{
         color: #fff;
-  margin: 0 0 2rem 0;
-  font-size: 3.25rem;
-  font-weight: bold;
+    margin: 0 0 2rem 0;
+    font-size: 3.25rem;
+    font-weight: bold;
     }
 `
 

@@ -12,7 +12,7 @@ const HeroContainer = styled(motion.div)`
   padding-bottom: 2rem;
   padding-left: ${props => props.theme.mainContentPadding};
   padding-right: ${props => props.theme.mainContentPadding};
-  background-image: url("https://images.unsplash.com/photo-1453053131046-5aea58348d50?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1678&q=80");
+  background-image: url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1616434757/nima_izadi_Jg_Gi_G2b_Mt_SM_unsplash_2_0dea8fd40e.jpg");
   background-repeat: no-repeat;
   background-position: top;
   background-size:cover;

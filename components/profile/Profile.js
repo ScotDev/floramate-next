@@ -13,7 +13,7 @@ import Pill from "../mini-components/Pill";
 
 
 export default function Profile({ data }) {
-    console.log(data)
+
 
     // const id = props.match.params.id
 
