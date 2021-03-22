@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
 import { StyledNavbar, NavbarBrand, NavbarList, NavbarListItem, MobileNavbar, MobileNavList, MobileNavItem, MobileNavToggle } from './NavigationUIComponents';
+import { theme } from '../../config/Theme';
 
 // import BrandImage from "../../public/vercel.svg";
 
@@ -23,9 +24,6 @@ const navbarVariants = {
             when: "afterChildren",
             staggerChildren: 0.09,
         }
-    },
-    scroll: {
-        backgroundColor: "#2f3e46"
     }
 }
 
@@ -35,9 +33,6 @@ const childrenVariants = {
     },
     hidden: {
         opacity: 0
-    },
-    scroll: {
-        opacity: 1
     }
 }
 
@@ -68,24 +63,23 @@ const hamburgerVariants = {
 }
 
 function Navbar({ bgColor, scrolling }) {
-    console.log(bgColor, scrolling)
-
-    // Should be synced in redux
+    // Should be synced in redux maybe
     const [toggleOpen, setToggleOpen] = useState(false)
 
     return (<>
-        <StyledNavbar bgColor={bgColor} borderBottom={scrolling && "#84a98c"} initial="visible" animate={scrolling ? "scroll" : "visible"} variants={navbarVariants} >
+        {/* <StyledNavbar bgColor={bgColor} borderBottom={scrolling && "#84a98c"} initial="visible" animate={scrolling ? "scroll" : "visible"} variants={navbarVariants} > */}
+        <StyledNavbar bgColor={theme.primaryColour} borderBottom={"#84a98c"} initial="hidden" animate="visible" variants={navbarVariants} >
             <Link href="/">
-                <NavbarBrand variants={childrenVariants} initial="hidden"><img alt="brand name" src="/brand.png" /><h4>floramate</h4></NavbarBrand>
+                <NavbarBrand variants={childrenVariants} initial="visible"><img alt="brand name" src="/brand.png" /><h4>floramate</h4></NavbarBrand>
             </Link>
             <NavbarList >
-                <NavbarListItem variants={childrenVariants} initial="hidden" whileFocus={{ scale: 1.1 }} whileHover={{ scale: 1.1 }}>
+                <NavbarListItem variants={childrenVariants} initial="visible">
                     <Link href="/">Home</Link>
                 </NavbarListItem>
-                <NavbarListItem variants={childrenVariants} initial="hidden" whileFocus={{ scale: 1.1 }} whileHover={{ scale: 1.1 }}>
+                <NavbarListItem variants={childrenVariants} initial="visible">
                     <Link href="/species">Species</Link>
                 </NavbarListItem>
-                <NavbarListItem variants={childrenVariants} initial="hidden" whileFocus={{ scale: 1.1 }} whileHover={{ scale: 1.1 }}>
+                <NavbarListItem variants={childrenVariants} initial="visible">
                     <Link href="/about">About</Link>
                 </NavbarListItem>
 

@@ -26,6 +26,7 @@ const NavbarBrand = styled(motion.div)`
   padding: 0;
   margin: 0;
   color:#fff;
+  cursor: pointer;
 
   h4{
     font-size: 2.3rem;
@@ -58,6 +59,7 @@ const NavbarList = styled(motion.ul)`
 const NavbarListItem = styled(motion.li)`
     padding-right: 1.1rem;
     text-align: center;
+    cursor: pointer;
     
     a {
     color: ${props => props.theme.primaryText};
@@ -161,6 +163,7 @@ const MobileNavItem = styled(motion.li)`
     margin: 0;
     /* border-bottom: 1px solid ${props => props.theme.primaryText}; */
     text-align: center;
+    cursor: pointer;
 
     a {
     color: ${props => props.theme.primaryText};

@@ -40,7 +40,6 @@ const childrenVariants = {
 }
 
 export default function about({ data }) {
-    console.log(data)
 
     const pageSEO = {
         title: "About",

@@ -36,7 +36,7 @@ const childrenVariants = {
 const Hero = () => {
 
     return (<>
-        <HeroContainer initial="hidden" animate="visible" variants={parentVariants}>
+        <HeroContainer initial="hidden" animate="visible" variants={parentVariants} >
 
             <motion.h1 variants={childrenVariants}>floramate</motion.h1>
             <motion.h2 variants={childrenVariants}>Helping you find wildlife-friendly plants for your area</motion.h2>
