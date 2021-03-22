@@ -5,9 +5,9 @@ import Card from './Card';
 import { ResultsGrid } from '../styled-components/Utils';
 import { SearchSection, SearchBox, SearchBtn, ResultsHeading, FilterBar, FilterBarWrapper, IconWrapper, FilterSelect } from './SearchUIComponents';
 
-const APIurl = "https://floramate-cms.herokuapp.com"
+// const APIurl = "https://floramate-cms.herokuapp.com"
 
-export default function Search() {
+export default function Search({ staticData }) {
     // Transition all to redux
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -28,8 +28,6 @@ export default function Search() {
         setQuery(e.target.value)
     }
 
-    // const defaultData = useAPI(`${APIurl}/profiles?_limit=${limit}`)
-
     let difficultyFilter;
     let plantTypeFilter;
 
@@ -45,39 +43,39 @@ export default function Search() {
         plantTypeFilter = "";
     }
 
-    useEffect(() => {
-        const fetchSearchResults = async () => {
-            setError(null)
-            setIsLoading(true)
-            try {
-                const res = await fetch(`${APIurl}/profiles?_limit=${limit}${difficultyFilter}${plantTypeFilter}`);
-                const formattedRes = await res.json();
-                if (formattedRes.length === 0) {
-                    setError("No results found")
-                }
-                setData(formattedRes);
-                setTimeout(() => {
-                    setIsLoading(false);
-                }, 300);
+    // useEffect(() => {
+    //     const fetchSearchResults = async () => {
+    //         setError(null)
+    //         setIsLoading(true)
+    //         try {
+    //             const res = await fetch(`${APIurl}/profiles?_limit=${limit}${difficultyFilter}${plantTypeFilter}`);
+    //             const formattedRes = await res.json();
+    //             if (formattedRes.length === 0) {
+    //                 setError("No results found")
+    //             }
+    //             setData(formattedRes);
+    //             setTimeout(() => {
+    //                 setIsLoading(false);
+    //             }, 300);
 
-            } catch (err) {
-                setError(err);
-                // console.log(defaultData)
-                // setData(defaultData.data);
-                setIsLoading(false);
-                console.log("Error loading data from API: ", err)
-            }
+    //         } catch (err) {
+    //             setError(err);
+    //             // console.log(defaultData)
+    //             // setData(defaultData.data);
+    //             setIsLoading(false);
+    //             console.log("Error loading data from API: ", err)
+    //         }
 
-        };
-        fetchSearchResults();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [limit, difficulty, plantType])
+    //     };
+    //     fetchSearchResults();
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [limit, difficulty, plantType])
 
 
     let items;
 
-    if (data) {
-        items = data.map((item, index) => {
+    if (staticData) {
+        items = staticData.map((item, index) => {
             return (
                 <Card key={index} data={item} />
             )

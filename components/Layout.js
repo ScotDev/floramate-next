@@ -6,7 +6,7 @@ export default function Layout({ children }) {
     // Navbar bgColor should come from redux
     return (
         <>
-            <Navbar bgColor={false} scrolling={true} />
+            <Navbar bgColor={false} scrolling={false} />
             {children}
             {/* <Credits /> */}
         </>

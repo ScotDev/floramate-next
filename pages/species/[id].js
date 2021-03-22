@@ -1,17 +1,13 @@
 import React from 'react';
-import Search from '../../../components/search/Search';
+import Profile from '../../components/profile/Profile';
 
-export default function speciesProfile({ data }) {
+export default function SpeciesProfile({ data }) {
     return (
         <>
-            {/* <h1 style={{ color: "black", marginTop: "300px" }}>{data.common_name}</h1> */}
-            <Search />
+            <Profile data={data} />
         </>
     )
 }
-
-
-// getserversideprops (static paths) in traversy video
 
 
 export const getStaticPaths = async (context) => {
@@ -27,6 +23,7 @@ export const getStaticPaths = async (context) => {
         fallback: false
     }
 }
+
 
 export const getStaticProps = async (context) => {
     const res = await fetch(`https://floramate-cms.herokuapp.com/profiles/${context.params.id}`)
