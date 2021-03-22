@@ -4,7 +4,6 @@ import { StyledNavbar, NavbarBrand, NavbarList, NavbarListItem, MobileNavbar, Mo
 
 // import BrandImage from "../../public/vercel.svg";
 
-// import { NavLink, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const navbarVariants = {

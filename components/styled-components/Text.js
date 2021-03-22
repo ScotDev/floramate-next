@@ -40,38 +40,5 @@ const SmallText = styled(motion.p)`
     color: ${props => props.color || props.theme.primaryColour};
 `;
 
-const TextBlockItem = styled.div`
 
-    h3 {
-        font-size: 1.8rem;
-        font-weight: 600;
-        color: ${props => props.theme.secondaryBlue};
-        margin: 0;
-    }
-
-    p {
-        font-size: 1.1rem;
-        font-weight: 400;
-        color: ${props => props.theme.secondaryBlue};
-    }
-
-    ul {
-        margin: 1rem 0 0 0;
-        padding: 0;
-        list-style-type: none;
-
-        li {
-            padding: 0.5rem 0;
-
-/* Animate hover state with framer motion */
-            a {
-                color: ${props => props.theme.primaryColour};
-                font-weight: 600;
-                font-size: 1.1rem;
-            }
-        }
-    }
-
-`;
-
-export { Title, Subtitle, LargeText, RegularText, SmallText, TextBlockItem };
+export { Title, Subtitle, LargeText, RegularText, SmallText };

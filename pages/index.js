@@ -1,24 +1,28 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Homepage from '../components/homepage/Homepage';
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <>
       <Head>
         <title>floramate</title>
+        <meta name="theme-color" content="#2f3e46" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      <Homepage data={data} />
+
     </>
   )
+}
+
+// should only fetch profiles tagged as featured
+export const getStaticProps = async () => {
+  const res = await fetch(`https://floramate-cms.herokuapp.com/profiles?_limit=3&featured=true`)
+  const data = await res.json();
+
+  return {
+    props: { data },
+    revalidate: 60
+  }
 }

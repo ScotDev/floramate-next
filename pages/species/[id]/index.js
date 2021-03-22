@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Search from '../../../components/search/Search';
 
 export default function speciesProfile({ data }) {
-    console.log(data)
     return (
-        <div>
-            <h1 style={{ color: "blue", marginTop: "300px" }}>{data.common_name}</h1>
-        </div>
+        <>
+            {/* <h1 style={{ color: "black", marginTop: "300px" }}>{data.common_name}</h1> */}
+            <Search />
+        </>
     )
 }
 

@@ -101,6 +101,9 @@ background-color:${props => props.theme.primaryColour || "#f7fffb"};
 /* border: none;
   margin-top: -1px; */
   padding-bottom:2rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 
   a{
     color: ${props => props.theme.primaryText};
@@ -137,5 +140,107 @@ display: flex;
 
 `;
 
+const FlexBoxItem = styled(motion.div)`
+    display: flex;
+    flex-direction: column;
+    text-align:justify;
+    align-items: center;
+    margin-right: 2.5rem;
 
-export { Content, PageSection, PageSectionTitle, ArticleContainer, ArticleBody, CreditSection, ErrorCard };
+    flex: 1 1 30%;
+
+    p {
+      max-width: 45ch;
+    }
+
+    h4 {
+      line-height: 1.5;
+    }
+
+    h4::after {
+    height: 3px;
+    width: 100%;
+    content: "";
+    display: block;
+    background-color: ${props => props.theme.secondaryColour};
+    border-radius: ${props => props.theme.borderRadius}
+    }
+
+    @media ${device.laptop}{
+      padding: 0.2rem 1rem;      
+      margin: 0;
+      flex-basis: 100%
+    }
+`
+
+const TextBlockItem = styled.div`
+
+    h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: ${props => props.theme.secondaryBlue};
+        margin: 0;
+    }
+
+    p {
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: ${props => props.theme.secondaryBlue};
+    }
+
+    ul {
+        margin: 1rem 0 0 0;
+        padding: 0;
+        list-style-type: none;
+
+        li {
+            padding: 0.5rem 0;
+            a {
+                color: ${props => props.theme.primaryColour};
+                font-weight: 600;
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+`;
+
+const FlexBox = styled(motion.div)`
+  display:flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+
+/* & > * {
+  flex: 1 1 30%;
+} */
+
+`;
+
+const ResultsGrid = styled.div`
+  display: flex;
+  padding: 0 2rem;
+  margin: 2rem auto 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  & > * {
+    flex: 1 1 100%;
+    min-width: 300px;
+    max-width: 340px;
+
+    /* @media ${device.laptopL}{
+    flex: 1 1 20%;
+    } */
+
+  }
+
+/* Dev only */
+
+img#spinner{
+  margin: 0 auto;
+}
+
+`
+
+
+export { Content, PageSection, PageSectionTitle, ArticleContainer, ArticleBody, CreditSection, ErrorCard, ResultsGrid, FlexBox, FlexBoxItem, TextBlockItem };
