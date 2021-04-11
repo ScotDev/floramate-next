@@ -1,10 +1,21 @@
 import React from 'react';
+import { NextSeo } from 'next-seo';
 import Search from '../../components/search/Search';
 
 export default function Species({ data }) {
 
+    const pageSEO = {
+        title: "Browse species",
+        description: "Browse and search for plants",
+        openGraph: {
+            title: "Browse species",
+            description: "Browse and search for plants"
+        }
+    }
+
     return (
         <>
+            <NextSeo {...pageSEO}></NextSeo>
             <Search staticData={data} />
         </>
     )

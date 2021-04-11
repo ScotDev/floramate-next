@@ -1,9 +1,21 @@
 import React from 'react';
+import { NextSeo } from 'next-seo';
 import Profile from '../../components/profile/Profile';
 
 export default function SpeciesProfile({ data }) {
+
+    const pageSEO = {
+        title: data.latin_name || "Species profile",
+        description: "View details about selected species",
+        openGraph: {
+            title: data.latin_name || "Species profile",
+            description: "View details about selected species"
+        }
+    }
+
     return (
         <>
+            <NextSeo {...pageSEO}></NextSeo>
             <Profile data={data} />
         </>
     )
