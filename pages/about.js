@@ -57,10 +57,10 @@ export default function about({ data }) {
     return (
         <>
             <NextSeo {...pageSEO}></NextSeo>
-            <Content>
+            <Content bgColor={theme.secondaryBlue}>
                 <ArticleContainer initial="hidden" animate="visible" variants={parentVariants}>
-                    <Title maxWidth={"50ch"} color={theme.primaryColour} variants={childrenVariants}>{data.page_title}</Title>
-                    <Subtitle maxWidth={"30ch"} color={theme.primaryColour} variants={childrenVariants}>{data.page_subtitle}</Subtitle>
+                    <Title maxWidth={"50ch"} color={theme.primaryText} variants={childrenVariants}>{data.page_title}</Title>
+                    {/* <Subtitle maxWidth={"30ch"} color={theme.primaryText} variants={childrenVariants}>{data.page_subtitle}</Subtitle> */}
 
                     <ArticleBody variants={childrenVariants}>
                         <RegularText color={theme.secondaryBlue} maxWidth={"65ch"} textAlign={"justify"}>{data.page_text_content}</RegularText>

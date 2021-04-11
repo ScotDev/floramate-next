@@ -8,6 +8,8 @@ const Content = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   padding: 2rem 0;
+  background: ${props => props.bgColor || "none"};
+  min-height: 100vh;
 
   @media ${device.tablet}{
     padding: 0;
@@ -80,6 +82,7 @@ const ArticleBody = styled(motion.article)`
   margin: 2rem 0;
   width: 100%;
   padding: 1rem 3rem;
+  background: #fff;
 
   @media ${device.laptop}{
     width:90%;

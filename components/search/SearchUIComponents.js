@@ -42,7 +42,7 @@ const SearchBox = styled(StyledSearchInput)`
   border-top-left-radius: 20px;
   border: 2px solid transparent;
 
-    ::placeholder{
+    ::placeholder {
     font-weight:700;
     }
 `

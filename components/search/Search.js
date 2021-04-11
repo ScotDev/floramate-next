@@ -81,7 +81,7 @@ export default function Search({ staticData }) {
                 setData(formattedRes);
                 setTimeout(() => {
                     setIsLoading(false);
-                }, 1500);
+                }, 1000);
             } catch (err) {
                 setError(err);
                 setData(staticData);
@@ -138,7 +138,7 @@ export default function Search({ staticData }) {
 
             </SearchSection>
 
-            {query && (<ResultsHeading initial={{ opacity: 0.2 }} animate={{ opacity: 1 }}>Results</ResultsHeading>)}
+            {query ? (<ResultsHeading initial={{ opacity: 0.2 }} animate={{ opacity: 1 }}>Results</ResultsHeading>) : null}
 
             <FilterBarWrapper>
                 <IconWrapper>

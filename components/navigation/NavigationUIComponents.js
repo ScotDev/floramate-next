@@ -3,17 +3,18 @@ import { device } from '../../config/Breakpoints';
 import { motion } from "framer-motion";
 
 const StyledNavbar = styled(motion.nav)`
-    position: fixed;
+    position: absolute;
     top: 0;
-    left: 0%;
+    left: 0;
     width: 100vw;
     display: flex;
     align-items: center;
     padding: 1rem 3.5rem;
-    background-color: ${props => props.bgColor || "transparent"};
+    /* background-color: ${props => props.bgColor || "transparent"}; */
+    background: transparent;
     height: 75px;
     z-index: 1;
-    border-bottom: 4px solid ${props => props.borderBottom || "transparent"};;
+    /* border-bottom: 4px solid ${props => props.borderBottom || "transparent"}; */
 
   /* Temporary while mobile nav developed */
     @media ${device.laptop}{
@@ -57,29 +58,54 @@ const NavbarList = styled(motion.ul)`
 `
 
 const NavbarListItem = styled(motion.li)`
-    padding-right: 1.1rem;
+    padding-right: 1.3rem;
     text-align: center;
     cursor: pointer;
+    display: inline-flex;
     
     a {
+    position:relative;
     color: ${props => props.theme.primaryText};
-    line-height: 1.6;
+    line-height: 1.7;
     padding: 0.15em 1em;
     font-size:${props => props.theme.size.regularText};
     text-decoration: none;
     font-weight: 500;
     letter-spacing: 1px;
-    border-radius: ${props => props.theme.borderRadius};
-    transition: all 0.15s;
+    /* border-radius: ${props => props.theme.borderRadius}; */
+    /* border-left: 2px solid ${props => props.theme.secondaryColour}; */
+    transition: color 0.25s;
 
-    &.active{
+    &::after{
+      content: '';
+      position: absolute;
+      left:50%;
+      bottom: 0;
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: 50% 50%50%;
+      width: 100%;
+      height: 3px;
       background-color: ${props => props.theme.secondaryColour};
-      color: ${props => props.theme.primaryText};
+      transition: transform 0.25s;
+      border-radius: 5px;
     }
-    &:hover, &:focus {
-      background-color: ${props => props.theme.secondaryColour};
-      color: ${props => props.theme.primaryText};
+
+    &:hover:after, &:focus:after {
+      transform: translateX(-50%) scaleX(1);
     }
+    &.active:after{
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    /* &.active { */
+      /* background-color: ${props => props.theme.primaryText}; */
+      /* color: ${props => props.theme.secondaryColour};
+      transform: translateX(-50%) scaleX(1);
+    } */
+    /* &:hover, &:focus { */
+      /* background-color: ${props => props.theme.primaryText}; */
+      /* color: ${props => props.theme.secondaryColour};
+    } */
 
     } 
 
