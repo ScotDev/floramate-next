@@ -12,33 +12,38 @@ const HeroContainer = styled(motion.div)`
   padding-bottom: 2rem;
   padding-left: ${props => props.theme.mainContentPadding};
   padding-right: ${props => props.theme.mainContentPadding};
-  background-image: url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1616434757/nima_izadi_Jg_Gi_G2b_Mt_SM_unsplash_2_0dea8fd40e.jpg");
+  /* background-image: url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1616434757/nima_izadi_Jg_Gi_G2b_Mt_SM_unsplash_2_0dea8fd40e.jpg"); */
+  background-image:url("./outdoor.svg");
   background-repeat: no-repeat;
   background-position: top;
-  background-size:cover;
+  background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
 
   box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
     0 3px 7px -3px rgb(0 0 0 / 30%);
 
+    @media ${device.laptopL}{
+      background-image:url("./outdoor_laptop.svg");
+    }
     @media ${device.laptop}{
       padding-left: 15vw;
       padding-right: 15vw;
+
     }
 
     @media ${device.tablet}{
     text-align: center;
     padding-left: 5vw;
     padding-right: 5vw;
-
     justify-content: flex-start;
-
     padding-top: 4rem;
+
+    background-image:url("./outdoor_mobile.svg");
     }
 
 h1 {
-  color: ${props => props.theme.primaryText};
+  color: ${props => props.theme.primaryColour};
   font-size: 9rem;
   font-weight: 700;
   margin: 0;
@@ -61,7 +66,7 @@ h1 {
 }
 
 h2, h3{
-  color: ${props => props.theme.primaryText};
+  color: ${props => props.theme.secondaryBlue};
   font-size: 3rem;
   font-weight: 500;
   margin: 0;

@@ -9,7 +9,7 @@ const StyledNavbar = styled(motion.nav)`
     width: 100vw;
     display: flex;
     align-items: center;
-    padding: 1rem 3.5rem;
+    padding: 1rem 2rem 1rem 3.5rem;
     /* background-color: ${props => props.bgColor || "transparent"}; */
     background: transparent;
     height: 75px;
