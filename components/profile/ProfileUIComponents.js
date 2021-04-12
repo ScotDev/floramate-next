@@ -17,12 +17,12 @@ const ProfileContent = styled.div`
     justify-content: center;
     align-items: center;
     padding: 2rem 4rem;
-    max-width: 100vw;
+
     }
 
   @media ${device.tablet}{
-    margin-top: 4rem;
-    padding: 2rem 1.5rem;
+
+    padding: 4rem 1.5rem;
     }
     
   @media ${device.mobileM}{
