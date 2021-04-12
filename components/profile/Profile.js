@@ -27,7 +27,6 @@ export default function Profile({ data }) {
 
     return (
         <>
-            {/* <Navbar bgColor={"#2f3e46"} padding={"10vw"} /> */}
             {data && <ProfileContent>
                 <ProfileTitle>{data.common_name}</ProfileTitle>
                 <ProfileSubtitle>{data.latin_name}</ProfileSubtitle>

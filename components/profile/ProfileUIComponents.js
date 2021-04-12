@@ -8,8 +8,9 @@ const ProfileContent = styled.div`
   flex-direction: column;
   padding: 8rem 4rem 2rem 4rem;
   /* height: 100vh; */
-  max-width: 90vw;
+  min-width: 100vw;
   margin: 0 auto;
+  background:#f6f9fc;
 
   @media ${device.laptop}{
     margin: 0;
