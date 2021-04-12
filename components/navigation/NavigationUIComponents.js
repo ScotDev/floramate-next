@@ -16,7 +16,8 @@ const StyledNavbar = styled(motion.nav)`
     z-index: 1;
     /* border-bottom: 4px solid ${props => props.borderBottom || "transparent"}; */
 
-  /* Temporary while mobile nav developed */
+    color: ${props => props.darkText && props.theme.secondaryBlue || props.theme.primaryText};
+
     @media ${device.laptop}{
       display:none;
     }
@@ -24,16 +25,18 @@ const StyledNavbar = styled(motion.nav)`
 
 const NavbarBrand = styled(motion.div)`
   display: flex;
+  align-items:center;
   padding: 0;
   margin: 0;
-  color:#fff;
   cursor: pointer;
+  
 
   h4{
     font-size: 2.3rem;
     padding: 0;
     margin: 0;
     font-weight: 400;
+    padding-top:5px;
   }
 
   img {
@@ -65,7 +68,7 @@ const NavbarListItem = styled(motion.li)`
     
     a {
     position:relative;
-    color: ${props => props.theme.primaryText};
+    /* color: ${props => props.theme.primaryText}; */
     line-height: 1.7;
     padding: 0.15em 1em;
     font-size:${props => props.theme.size.regularText};

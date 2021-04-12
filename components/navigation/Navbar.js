@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
+import { useRouter } from 'next/router';
 import { StyledNavbar, NavbarBrand, NavbarList, NavbarListItem, MobileNavbar, MobileNavList, MobileNavItem, MobileNavToggle } from './NavigationUIComponents';
 import { theme } from '../../config/Theme';
 
@@ -65,14 +66,37 @@ const hamburgerVariants = {
 function Navbar({ bgColor, scrolling }) {
     // Should be synced in redux maybe
     const [toggleOpen, setToggleOpen] = useState(false)
+    const router = useRouter()
+
+    let darkText;
+
+    if (router.route === "/species/[id]") {
+        darkText = true
+    }
+
+
+    useEffect(() => {
+        const handleRouteChange = (err, url) => {
+            setToggleOpen(false)
+            if (err) {
+                console.log("Route change error: ", err)
+            }
+        }
+
+        router.events.on('routeChangeStart', handleRouteChange)
+
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChange)
+        }
+    }, [])
 
     return (<>
         {/* <StyledNavbar bgColor={bgColor} borderBottom={scrolling && "#84a98c"} initial="visible" animate={scrolling ? "scroll" : "visible"} variants={navbarVariants} > */}
-        <StyledNavbar bgColor={theme.primaryColour} borderBottom={"#84a98c"} initial="hidden" animate="visible" variants={navbarVariants} >
+        <StyledNavbar bgColor={theme.primaryColour} darkText={darkText} borderBottom={"#84a98c"} initial="hidden" animate="visible" variants={navbarVariants} >
             <Link href="/">
-                <NavbarBrand variants={childrenVariants} initial="visible"><img alt="brand name" src="/brand.png" /><h4>floramate</h4></NavbarBrand>
+                <NavbarBrand variants={childrenVariants} darkText={darkText} initial="visible"><img alt="brand name" src={darkText ? "/brand_dark.svg" : "/brand.svg"} /><h4>floramate</h4></NavbarBrand>
             </Link>
-            <NavbarList >
+            <NavbarList>
                 <NavbarListItem variants={childrenVariants} initial="visible">
                     <Link href="/">Home</Link>
                 </NavbarListItem>
