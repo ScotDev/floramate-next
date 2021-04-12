@@ -45,7 +45,7 @@ const HeroContainer = styled(motion.div)`
 
 h1 {
   color: ${props => props.theme.primaryColour};
-  font-size: 9rem;
+  font-size: 10rem;
   font-weight: 700;
   margin: 0;
   padding: 0 0 1.5rem 0;
@@ -68,7 +68,7 @@ h1 {
 
 h2, h3{
   color: ${props => props.theme.secondaryBlue};
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 500;
   margin: 0;
   padding: 0 0 1rem 0;
@@ -86,6 +86,10 @@ h2, h3{
   @media ${device.desktopL} {
     max-width: 100%;
     padding: 0 10em 1em 0;
+  }
+  
+  @media ${device.tablet} {
+    font-size: 1.8rem;
   }
 
 }

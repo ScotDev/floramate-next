@@ -43,7 +43,7 @@ const Hero = () => {
 
             <BtnGroup variants={childrenVariants}>
                 <Link href="/species">
-                    <SecondaryBtn fontSize={"1.6rem"} >Browse</SecondaryBtn>
+                    <SecondaryBtn fontSize={"1.8rem"} >Browse</SecondaryBtn>
                 </Link>
                 {/* <Link to="/about">
                     <InfoBtn fontSize={"1.5rem"}>About</InfoBtn>

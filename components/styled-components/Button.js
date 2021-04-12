@@ -42,13 +42,13 @@ const SecondaryBtn = styled(StyledBtn)`
 
   background-image: linear-gradient(to right, #2f3e46, #4f5874, #916b92, #d67d91, #ffa17a);
   background-size: 300%;
-  background-position: left;
+  background-position: right;
   transition: background-position 0.25s;
 
   &:hover, &:focus {
     /* color: ${props => props.theme.secondaryColour || "#2f3e46"}; */
     /* background-color: ${props => props.theme.primaryText || "#f7fffb"}; */
-    background-position: right;
+    background-position: left;
 
 
     /* // Prod */

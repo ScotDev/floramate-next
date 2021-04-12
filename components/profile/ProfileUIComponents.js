@@ -21,7 +21,6 @@ const ProfileContent = styled.div`
     }
 
   @media ${device.tablet}{
-
     padding: 4rem 1.5rem;
     }
     
