@@ -8,7 +8,11 @@ const Content = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   padding: 2rem 0;
-  background: ${props => props.bgColor || "none"};
+  /* background: ${props => props.bgColor || "none"}; */
+  /* background: linear-gradient(125deg, rgba(104,150,134,1) 21%, rgba(224,234,226,1) 80%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#689686",endColorstr="#e0eae2",GradientType=1); */
+  /* background-image: linear-gradient(to right, #051937, #003752, #125767, #3b7777, #689686); */
+  background-image: linear-gradient(to left bottom, #2f3e46, #4f5874, #916b92, #d67d91, #ffa17a);
   min-height: 100vh;
 
   @media ${device.tablet}{
@@ -222,10 +226,13 @@ const FlexBox = styled(motion.div)`
 const ResultsGrid = styled.div`
   display: flex;
   padding: 0 2rem;
-  margin: 2rem auto 0 auto;
+  margin: 0 auto;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  /* background-image: linear-gradient(to bottom, #051937, #003752, #125767, #3b7777, #689686); */
+  /* background-image: linear-gradient(to bottom, #2f3e46, #39535a, #44696c, #53807b, #689686); */
+
   & > * {
     flex: 1 1 100%;
     min-width: 300px;

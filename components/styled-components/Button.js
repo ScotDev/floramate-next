@@ -10,6 +10,7 @@ const StyledBtn = styled(motion.button)`
   font-family: inherit;
   text-align: center;
   border: 2px solid transparent;
+  outline: none;
   font-size: ${props => props.fontSize || props.theme.size.regularText};
   box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
     0 3px 7px -3px rgb(0 0 0 / 30%);
@@ -31,15 +32,28 @@ const PrimaryBtn = styled(StyledBtn)`
   `;
 
 const SecondaryBtn = styled(StyledBtn)`
-  color: ${props => props.theme.primaryText || "#f7fffb"};
-  background-color: ${props => props.theme.secondaryColour || "#6e6448"};
-  border: 2px solid ${props => props.theme.secondaryColour || "#f7fffb"};
-  font-weight: bold;
+/* // Prod */
+  color: ${props => props.theme.primaryText};
+  /* background: ${props => props.theme.secondaryColour}; */
+  /* border: 2px solid transparent; */
+  border: none;
+  
+  font-weight: 500;
+
+  background-image: linear-gradient(to right, #2f3e46, #4f5874, #916b92, #d67d91, #ffa17a);
+  background-size: 300%;
+  background-position: left;
+  transition: background-position 0.25s;
+
+  &:hover, &:focus {
+    /* color: ${props => props.theme.secondaryColour || "#2f3e46"}; */
+    /* background-color: ${props => props.theme.primaryText || "#f7fffb"}; */
+    background-position: right;
 
 
-&:hover, &:focus {
-  color: ${props => props.theme.secondaryColour || "#2f3e46"};
-  background-color: ${props => props.theme.primaryText || "#f7fffb"};
+    /* // Prod */
+    /* border: 2px solid ${props => props.theme.primaryText};
+    background: rgba(255,255,255,0.1); */
 }
 `
 

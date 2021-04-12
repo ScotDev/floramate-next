@@ -83,9 +83,11 @@ const ResultsHeading = styled(motion.h3)`
 `;
 
 const FilterBarWrapper = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  background: transparent;
 `;
 
 const FilterBar = styled.form`

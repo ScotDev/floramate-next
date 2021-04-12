@@ -11,7 +11,16 @@ body {
   margin: 0;
   font-size: 16px;
   overflow-x: hidden;
-  background-color: #f6f9fc;
+  /* background-color: #f6f9fc; */
+  background-image: linear-gradient(
+    to right top,
+    #2f3e46,
+    #3a474e,
+    #445057,
+    #4f595f,
+    #5a6368
+  );
+  min-height: 100vh;
 }
 
 a {

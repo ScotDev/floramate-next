@@ -25,7 +25,7 @@ export default function Homepage({ data }) {
 
             </PageSection>
 
-            <PageSection>
+            <PageSection bgColor={"#f6f9fc"}>
                 <Info></Info>
             </PageSection>
         </>

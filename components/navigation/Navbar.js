@@ -67,9 +67,9 @@ function Navbar({ bgColor, scrolling }) {
     // Should be synced in redux maybe
     const [toggleOpen, setToggleOpen] = useState(false)
     const router = useRouter()
+    console.log()
 
     let darkText;
-
     if (router.route === "/species/[id]") {
         darkText = true
     }
@@ -78,9 +78,6 @@ function Navbar({ bgColor, scrolling }) {
     useEffect(() => {
         const handleRouteChange = (err, url) => {
             setToggleOpen(false)
-            if (err) {
-                console.log("Route change error: ", err)
-            }
         }
 
         router.events.on('routeChangeStart', handleRouteChange)
@@ -93,7 +90,7 @@ function Navbar({ bgColor, scrolling }) {
     return (<>
         {/* <StyledNavbar bgColor={bgColor} borderBottom={scrolling && "#84a98c"} initial="visible" animate={scrolling ? "scroll" : "visible"} variants={navbarVariants} > */}
         <StyledNavbar bgColor={theme.primaryColour} darkText={darkText} borderBottom={"#84a98c"} initial="hidden" animate="visible" variants={navbarVariants} >
-            <Link href="/">
+            <Link href="/" >
                 <NavbarBrand variants={childrenVariants} darkText={darkText} initial="visible"><img alt="brand name" src={darkText ? "/brand_dark.svg" : "/brand.svg"} /><h4>floramate</h4></NavbarBrand>
             </Link>
             <NavbarList>
