@@ -14,6 +14,7 @@ const HeroContainer = styled(motion.div)`
   padding-right: ${props => props.theme.mainContentPadding};
   /* background-image: url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1616434757/nima_izadi_Jg_Gi_G2b_Mt_SM_unsplash_2_0dea8fd40e.jpg"); */
   background-image:url("./outdoor.svg");
+  /* https://iconscout.com/illustration/woman-working-while-seating-on-park-bench-2969602 */
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
@@ -48,8 +49,8 @@ h1 {
   font-weight: 700;
   margin: 0;
   padding: 0 0 1.5rem 0;
-  text-shadow: 0 6px 12px rgb(50 50 93 / 25%),
-    0 3px 7px rgb(0 0 0 / 30%);
+  /* text-shadow: 0 6px 12px rgb(50 50 93 / 25%),
+    0 3px 7px rgb(0 0 0 / 30%); */
   width: 100%;
 
   @media ${device.laptopL} {
@@ -71,8 +72,8 @@ h2, h3{
   font-weight: 500;
   margin: 0;
   padding: 0 0 1rem 0;
-  text-shadow: 0 6px 12px rgb(50 50 93 / 10%),
-    0 3px 7px rgb(0 0 0 / 30%);
+  /* text-shadow: 0 6px 12px rgb(50 50 93 / 10%),
+    0 3px 7px rgb(0 0 0 / 30%); */
   max-width: 40ch;
 
   @media ${device.laptopL} {
