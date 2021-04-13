@@ -33,7 +33,6 @@ const RegularText = styled(motion.p)`
     line-height: 1.6;
     text-align: ${props => props.textAlign};
     padding: ${props => props.padding || "1em"};
-
 `;
 const SmallText = styled(motion.p)`
     font-size:${props => props.theme.size.smallText};

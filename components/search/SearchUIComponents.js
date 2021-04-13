@@ -231,7 +231,7 @@ const ResultsCard = styled(motion.div)`
   h4 {
   /* color: #fff; */
   /* border-bottom: 2px solid var(--primary-green); */
-  font-size: 1.2rem;
+  font-size: ${props => props.theme.size.regularText};
   text-align: center;
   margin: 0.5rem 1.5rem;
   padding-bottom: 0.3rem;
@@ -248,7 +248,7 @@ const ResultsCard = styled(motion.div)`
 h5 {
   /* color: #fff; */
   border-bottom: 2px solid ${props => props.theme.secondaryColour};
-  font-size: ${props => props.theme.size.regularText};
+  font-size: ${props => props.theme.size.smallText};
   text-align: center;
   margin: 0.5rem 1.5rem 1rem 1.5rem;
   padding-bottom: 0.3rem;
@@ -291,12 +291,12 @@ const InnerCardGrid = styled.div`
   
   p{
     color: ${props => props.theme.secondaryBlue};
-    font-size: 1.1rem;
+    font-size: calc(${props => props.theme.size.smallText} + 10%); 
     font-weight: 500;
     margin: 0;
 
     @media ${device.tablet}{
-    font-size: 1rem;
+    font-size: ${props => props.theme.size.regularText};
     }
   }
 

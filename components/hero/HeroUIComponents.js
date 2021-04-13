@@ -62,7 +62,7 @@ h1 {
     padding-bottom: 2rem;
   }
   @media ${device.tablet} {
-    font-size:  4.75rem;
+    font-size: 4.75rem;
   }
 }
 
