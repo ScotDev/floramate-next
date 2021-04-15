@@ -70,7 +70,7 @@ function Navbar({ bgColor, scrolling }) {
     console.log()
 
     let darkText;
-    if (router.route === "/species/[id]") {
+    if (router.route === "/species/[id]" || router.route === "/") {
         darkText = true
     }
 
