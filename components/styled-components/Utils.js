@@ -82,7 +82,7 @@ const ArticleBody = styled(motion.article)`
   align-items: center;
   box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
     0 3px 7px -3px rgb(0 0 0 / 30%);
-  border-radius: ${props => props.theme.borderRadius};
+  border-radius: 8px;
   margin: 2rem 0;
   width: 100%;
   padding: 1rem 3rem;

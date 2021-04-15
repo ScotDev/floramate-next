@@ -64,11 +64,11 @@ const hamburgerVariants = {
 }
 
 function Navbar({ bgColor, scrolling }) {
-    // Should be synced in redux maybe
     const [toggleOpen, setToggleOpen] = useState(false)
     const router = useRouter()
-    console.log()
 
+    // Ensures navbar contents visibility on light backgrounds.
+    // This could be done in SASS but I'm used styled-components :)
     let darkText;
     if (router.route === "/species/[id]" || router.route === "/") {
         darkText = true

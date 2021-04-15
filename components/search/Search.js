@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { BsFilter } from 'react-icons/bs'
+import { BsFilter, BsChevronDown, BsChevronDoubleDown } from 'react-icons/bs'
+import { AiOutlineSearch } from 'react-icons/ai'
 
 import Spinner from '../mini-components/Spinner';
 
 import Card from './Card';
 import { ResultsGrid } from '../styled-components/Utils';
 import { RegularText } from '../styled-components/Text';
-import { SearchSection, SearchBox, SearchBtn, ResultsHeading, FilterBar, FilterBarWrapper, IconWrapper, FilterSelect } from './SearchUIComponents';
+import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, CustomSelectWrapper, ResultsHeading, FilterBar, FilterBarWrapper, IconWrapper, FilterSelect } from './SearchUIComponents';
 
 
 const APIurl = "https://floramate-cms.herokuapp.com"
@@ -130,15 +131,51 @@ export default function Search({ staticData }) {
     return (
         <>
             <SearchSection initial={{ opacity: 0.2 }} animate={{ opacity: 1 }} >
-                <h2>Species</h2>
-                <form>
-                    <SearchBox type="text" placeholder="Search..." value={query} onChange={handleChange}></SearchBox>
-                    <SearchBtn type="submit" value="Search" onClick={handleSubmit} />
-                </form>
-
+                {/* <h2>Species</h2> */}
+                <SearchFormWrapper>
+                    <SearchForm>
+                        <SearchBox type="text" placeholder="Enter a search term..." value={query} onChange={handleChange}></SearchBox>
+                        <SearchBtn type="submit" value="Search" onClick={handleSubmit} ><AiOutlineSearch /></SearchBtn>
+                    </SearchForm>
+                    <SearchFormFilters>
+                        <CustomSelectWrapper>
+                            <select>
+                                <option selected>Test 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                            </select>
+                            <BsChevronDown />
+                        </CustomSelectWrapper>
+                        <CustomSelectWrapper>
+                            <select>
+                                <option selected>Test 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                            </select>
+                            <BsChevronDown />
+                        </CustomSelectWrapper>
+                        <CustomSelectWrapper>
+                            <select>
+                                <option selected>Test 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                            </select>
+                            <BsChevronDown />
+                        </CustomSelectWrapper>
+                        <CustomSelectWrapper>
+                            <select>
+                                <option selected>Test 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                            </select>
+                            <BsChevronDown />
+                        </CustomSelectWrapper>
+                    </SearchFormFilters>
+                    <BsChevronDoubleDown />
+                </SearchFormWrapper>
             </SearchSection>
 
-            {query ? (<ResultsHeading initial={{ opacity: 0.2 }} animate={{ opacity: 1 }}>Results</ResultsHeading>) : null}
+            {/* {query ? (<ResultsHeading initial={{ opacity: 0.2 }} animate={{ opacity: 1 }}>Results</ResultsHeading>) : null} */}
 
             <FilterBarWrapper>
                 <IconWrapper>

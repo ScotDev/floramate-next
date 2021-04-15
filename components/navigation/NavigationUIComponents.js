@@ -68,15 +68,12 @@ const NavbarListItem = styled(motion.li)`
     
     a {
     position:relative;
-    /* color: ${props => props.theme.primaryText}; */
     line-height: 1.7;
     padding: 0.15em 1em;
     font-size:${props => props.theme.size.regularText};
     text-decoration: none;
     font-weight: 500;
     letter-spacing: 1px;
-    /* border-radius: ${props => props.theme.borderRadius}; */
-    /* border-left: 2px solid ${props => props.theme.secondaryColour}; */
     transition: color 0.25s;
 
     &::after{
@@ -85,7 +82,7 @@ const NavbarListItem = styled(motion.li)`
       left:50%;
       bottom: 0;
       transform: translateX(-50%) scaleX(0);
-      transform-origin: 50% 50%50%;
+      transform-origin: 50% 50%;
       width: 100%;
       height: 3px;
       background-color: ${props => props.theme.secondaryColour};
