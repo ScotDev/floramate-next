@@ -1,7 +1,10 @@
 import React from 'react';
+import Link from 'next/link'
 
 import { FlexBox, FlexBoxItem } from '../styled-components/Utils';
 import { LargeText, RegularText } from '../styled-components/Text';
+import { LinkBtn } from '../styled-components/Button';
+import { BsArrowRightShort } from 'react-icons/bs';
 
 const parentVariants = {
     visible: {
@@ -27,7 +30,7 @@ const childrenVariants = {
 
 export default function Info({ color }) {
     return (<>
-        <FlexBox initial="hidden" animate="visible" variants={parentVariants}>
+        <FlexBox initial="hidden" animate="visible" variants={parentVariants} marginBottom={"1rem"}>
             <FlexBoxItem variants={childrenVariants} >
                 <LargeText color={color} textAlign={"center"}>
                     Native trees
@@ -53,5 +56,6 @@ export default function Info({ color }) {
         </RegularText>
             </FlexBoxItem>
         </FlexBox>
+        <Link href="/about"><LinkBtn>About<BsArrowRightShort /></LinkBtn></Link>
     </>)
 }

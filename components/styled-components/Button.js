@@ -71,6 +71,7 @@ const InfoBtn = styled(StyledBtn)`
 const LinkBtn = styled(StyledBtn)`
   color: ${props => props.theme.primaryText};
   background-color: ${props => props.theme.secondaryColour};
+  padding-right: 1em;
 
   &:hover, &:focus {
     background-color: ${props => props.theme.secondaryColourLight};

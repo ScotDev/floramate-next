@@ -12,8 +12,7 @@ const HeroContainer = styled(motion.div)`
   padding-bottom: 2rem;
   padding-left: ${props => props.theme.mainContentPadding};
   padding-right: ${props => props.theme.mainContentPadding};
-  /* background-image: url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1616434757/nima_izadi_Jg_Gi_G2b_Mt_SM_unsplash_2_0dea8fd40e.jpg"); */
-  background-image:url("./outdoor.svg");
+  background-image:url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1618567631/outdoor_bvgztk.svg");
   /* https://iconscout.com/illustration/woman-working-while-seating-on-park-bench-2969602 */
   background-repeat: no-repeat;
   background-position: top;
@@ -25,7 +24,7 @@ const HeroContainer = styled(motion.div)`
     0 3px 7px -3px rgb(0 0 0 / 30%);
 
     @media ${device.laptopL}{
-      background-image:url("./outdoor_laptop.svg");
+      background-image:url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1618567632/outdoor_laptop_demonf.svg");
     }
     @media ${device.laptop}{
       padding-left: 15vw;
@@ -40,7 +39,7 @@ const HeroContainer = styled(motion.div)`
     justify-content: flex-start;
     padding-top: 4rem;
 
-    background-image:url("./outdoor_mobile.svg");
+    background-image:url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1618567631/outdoor_mobile_pn8prb.svg");
     }
 
 h1 {

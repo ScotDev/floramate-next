@@ -89,7 +89,7 @@ const ProfileImageContainer = styled.div`
 
   img {
     position: absolute;
-    border-radius: ${props => props.theme.borderRadius};
+    border-radius: 8px;
     height: 100%;
     width: 80%; 
     object-fit: cover;

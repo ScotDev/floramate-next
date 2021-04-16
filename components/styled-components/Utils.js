@@ -216,6 +216,7 @@ const FlexBox = styled(motion.div)`
   display:flex;
   flex-direction:row;
   flex-wrap: wrap;
+  margin-bottom: ${props => props.marginBottom};
 
 /* & > * {
   flex: 1 1 30%;
