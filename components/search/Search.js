@@ -70,7 +70,7 @@ export default function Search({ staticData }) {
             setError(null)
             setIsLoading(true)
             try {
-                const res = await fetch(`${APIurl}/profiles?_limit=${limit}${difficultyFilter}${plantTypeFilter}${sunFilter}${moistureFilter}`);
+                const res = await fetch(`${APIurl}/profiles?_sort=latin_name:ASC&_limit=${limit}${difficultyFilter}${plantTypeFilter}${sunFilter}${moistureFilter}`);
                 const formattedRes = await res.json();
                 if (formattedRes.length === 0) {
                     setTimeout(() => {

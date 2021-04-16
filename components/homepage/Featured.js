@@ -1,10 +1,10 @@
+import Link from 'next/link';
 import React from 'react';
-
-// import useAPI from '../../hooks/useApi'
-
 
 import Card from '../search/Card';
 import { ResultsGrid } from '../styled-components/Utils';
+import { LinkBtn } from '../styled-components/Button';
+import { BsArrowRightShort } from 'react-icons/bs';
 
 
 export default function Featured({ data }) {
@@ -27,9 +27,10 @@ export default function Featured({ data }) {
         })
     }
 
-    return (
+    return (<>
         <ResultsGrid>
             {items}
         </ResultsGrid>
-    )
+        <Link href="/species"><LinkBtn>Browse more<BsArrowRightShort /></LinkBtn></Link>
+    </>)
 }

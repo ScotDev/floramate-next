@@ -14,13 +14,17 @@ const StyledBtn = styled(motion.button)`
   font-size: ${props => props.fontSize || props.theme.size.regularText};
   box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
     0 3px 7px -3px rgb(0 0 0 / 30%);
-  transition: border 0.2s, color 0.2s, background-color 0.2s;
+  transition: all 0.2s;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   /* Default properties for button icons */
   svg {
     font-weight: inherit;
-    vertical-align: middle;
+    /* vertical-align: middle; */
   }
 `
 
@@ -49,13 +53,6 @@ const CtaBtn = styled(StyledBtn)`
   &:hover, &:focus {
     background-position: left;
   }
-
-  /* svg {
-    font-size: 2.25rem;
-    padding: 0;
-    margin: 0;
-    height: 34px;
-  } */
 `;
 
 const InfoBtn = styled(StyledBtn)`
@@ -70,6 +67,22 @@ const InfoBtn = styled(StyledBtn)`
     background-color: ${props => props.theme.primaryText || "#f7fffb"};
   }
 `
+
+const LinkBtn = styled(StyledBtn)`
+  color: ${props => props.theme.primaryText};
+  background-color: ${props => props.theme.secondaryColour};
+
+  &:hover, &:focus {
+    background-color: ${props => props.theme.secondaryColourLight};
+  }
+
+    svg {
+    font-size: 1.75em;
+    padding: 0;
+    margin: 0 0 0 0.1em;
+    /* height: 34px; */
+  }
+`;
 
 
 const BtnGroup = styled(motion.div)`
@@ -99,4 +112,4 @@ button:nth-of-type(1) {
 `;
 
 
-export { StyledBtn, PrimaryBtn, CtaBtn, BtnGroup, InfoBtn };
+export { StyledBtn, PrimaryBtn, CtaBtn, LinkBtn, BtnGroup, InfoBtn };

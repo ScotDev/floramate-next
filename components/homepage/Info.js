@@ -26,7 +26,7 @@ const childrenVariants = {
 }
 
 export default function Info({ color }) {
-    return (
+    return (<>
         <FlexBox initial="hidden" animate="visible" variants={parentVariants}>
             <FlexBoxItem variants={childrenVariants} >
                 <LargeText color={color} textAlign={"center"}>
@@ -53,5 +53,5 @@ export default function Info({ color }) {
         </RegularText>
             </FlexBoxItem>
         </FlexBox>
-    )
+    </>)
 }
