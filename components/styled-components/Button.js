@@ -16,6 +16,12 @@ const StyledBtn = styled(motion.button)`
     0 3px 7px -3px rgb(0 0 0 / 30%);
   transition: border 0.2s, color 0.2s, background-color 0.2s;
   cursor: pointer;
+
+  /* Default properties for button icons */
+  svg {
+    font-weight: inherit;
+    vertical-align: middle;
+  }
 `
 
 const PrimaryBtn = styled(StyledBtn)`
@@ -31,31 +37,26 @@ const PrimaryBtn = styled(StyledBtn)`
   }
   `;
 
-const SecondaryBtn = styled(StyledBtn)`
-/* // Prod */
+const CtaBtn = styled(StyledBtn)`
   color: ${props => props.theme.primaryText};
-  /* background: ${props => props.theme.secondaryColour}; */
-  /* border: 2px solid transparent; */
   border: none;
-  
   font-weight: 500;
-
   background-image: linear-gradient(to right, #2f3e46, #4f5874, #916b92, #d67d91, #ffa17a);
   background-size: 300%;
   background-position: right;
   transition: background-position 0.25s;
 
   &:hover, &:focus {
-    /* color: ${props => props.theme.secondaryColour || "#2f3e46"}; */
-    /* background-color: ${props => props.theme.primaryText || "#f7fffb"}; */
     background-position: left;
+  }
 
-
-    /* // Prod */
-    /* border: 2px solid ${props => props.theme.primaryText};
-    background: rgba(255,255,255,0.1); */
-}
-`
+  /* svg {
+    font-size: 2.25rem;
+    padding: 0;
+    margin: 0;
+    height: 34px;
+  } */
+`;
 
 const InfoBtn = styled(StyledBtn)`
   color: ${props => props.theme.primaryText || "#f7fffb"};
@@ -98,4 +99,4 @@ button:nth-of-type(1) {
 `;
 
 
-export { StyledBtn, PrimaryBtn, SecondaryBtn, BtnGroup, InfoBtn };
+export { StyledBtn, PrimaryBtn, CtaBtn, BtnGroup, InfoBtn };

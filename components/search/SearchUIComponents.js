@@ -5,7 +5,8 @@ import { device } from '../../config/Breakpoints';
 
 const SearchSection = styled(motion.div)`
   /* background: url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1616435022/search_bg_2616e6cf8c.jpg"); */
-  background-color: ${props => props.theme.primaryColour};
+  /* background-color: ${props => props.theme.primaryColour}; */
+  background-image: linear-gradient(to left bottom, #2f3e46, #4f5874, #916b92, #d67d91, #ffa17a);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -135,7 +136,7 @@ const CustomSelectWrapper = styled.div`
   margin: 0 auto;
   padding: 0;
   display: flex;
-
+  cursor: pointer;
   align-items:center;
   color: #fff;
   font-size: ${props => props.theme.size.smallText};

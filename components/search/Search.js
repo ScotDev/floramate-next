@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BsFilter, BsChevronDown, BsChevronDoubleDown } from 'react-icons/bs'
+import { BsFilter, BsChevronDown } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
 
 import Spinner from '../mini-components/Spinner';
@@ -171,7 +171,6 @@ export default function Search({ staticData }) {
                             <BsChevronDown />
                         </CustomSelectWrapper>
                     </SearchFormFilters>
-                    <BsChevronDoubleDown />
                 </SearchFormWrapper>
             </SearchSection>
 
@@ -212,9 +211,9 @@ export default function Search({ staticData }) {
                     </FilterSelect>
 
                     <FilterSelect name="limit_results" onChange={handleLimitChange}>
-                        <option value="8">8</option>
-                        <option value="10">10</option>
-                        <option selected value="20">20</option>
+                        <option value="6">6</option>
+                        <option value="12">12</option>
+                        <option selected value="24">24</option>
                     </FilterSelect>
                 </FilterBar>
             </FilterBarWrapper>
