@@ -110,7 +110,8 @@ const SearchFormFilters = styled.div`
 
 const CustomSelectWrapper = styled.div`
   margin: 0;
-  padding: 0 0.5rem 0 0;
+  /* padding: 0 0.5rem 0 0; */
+  padding: 0.25em 0.5em;
   display: flex;
   cursor: pointer;
   align-items:center;
