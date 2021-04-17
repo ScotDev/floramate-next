@@ -56,6 +56,6 @@ export default function Info({ color }) {
         </RegularText>
             </FlexBoxItem>
         </FlexBox>
-        <Link href="/about"><LinkBtn>About<BsArrowRightShort /></LinkBtn></Link>
+        <Link href="/about"><LinkBtn>About floramate<BsArrowRightShort /></LinkBtn></Link>
     </>)
 }

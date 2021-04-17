@@ -7,7 +7,9 @@ import Spinner from '../mini-components/Spinner';
 import Card from './Card';
 import { ResultsGrid } from '../styled-components/Utils';
 import { RegularText } from '../styled-components/Text';
-import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, CustomSelectWrapper, ResultsHeading, FilterBar, FilterBarWrapper, IconWrapper, FilterSelect } from './SearchUIComponents';
+import { SecondaryBtn } from '../styled-components/Button'
+import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, CustomSelectWrapper, PageFilterWrapper, ResultsHeading, FilterBar, FilterBarWrapper, IconWrapper, FilterSelect } from './SearchUIComponents';
+import { theme } from '../../config/Theme';
 
 
 const APIurl = "https://floramate-cms.herokuapp.com"
@@ -17,13 +19,13 @@ export default function Search({ staticData }) {
     // Transition all to redux
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [limit, setLimit] = useState(20)
+    const [limit, setLimit] = useState(24)
+    const [sort, setSort] = useState("ASC")
     const [plantType, setPlantType] = useState("")
     const [difficulty, setDifficulty] = useState("")
     const [sun, setSun] = useState("")
     const [moisture, setMoisture] = useState("")
     const [data, setData] = useState(staticData);
-    const [toggleDisplay, setToggleDisplay] = useState(false);
     const [query, setQuery] = useState("")
 
     const handleChange = e => {
@@ -70,7 +72,7 @@ export default function Search({ staticData }) {
             setError(null)
             setIsLoading(true)
             try {
-                const res = await fetch(`${APIurl}/profiles?_sort=latin_name:ASC&_limit=${limit}${difficultyFilter}${plantTypeFilter}${sunFilter}${moistureFilter}`);
+                const res = await fetch(`${APIurl}/profiles?_sort=latin_name:${sort}&_limit=${limit}${difficultyFilter}${plantTypeFilter}${sunFilter}${moistureFilter}`);
                 const formattedRes = await res.json();
                 if (formattedRes.length === 0) {
                     setTimeout(() => {
@@ -93,7 +95,7 @@ export default function Search({ staticData }) {
         };
         fetchSearchResults();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [limit, difficulty, plantType, sun, moisture])
+    }, [limit, sort, difficulty, plantType, sun, moisture])
 
 
     let items;
@@ -111,6 +113,9 @@ export default function Search({ staticData }) {
     const handleLimitChange = e => {
         setLimit(e.target.value)
     }
+    const handleSortChange = e => {
+        setSort(e.target.value)
+    }
     const handlePlantTypeChange = e => {
         setPlantType(e.target.value)
     }
@@ -124,10 +129,6 @@ export default function Search({ staticData }) {
         setMoisture(e.target.value)
     }
 
-    const handleToggleDisplay = () => {
-        setToggleDisplay(!toggleDisplay)
-    }
-
     return (
         <>
             <SearchSection initial={{ opacity: 0.2 }} animate={{ opacity: 1 }} >
@@ -139,84 +140,72 @@ export default function Search({ staticData }) {
                     </SearchForm>
                     <SearchFormFilters>
                         <CustomSelectWrapper>
-                            <select>
-                                <option selected>Test 1</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
+                            <select name="type" onChange={handlePlantTypeChange}>
+                                <option selected value="">Plant type...</option>
+                                <option value="Tree">Tree</option>
+                                <option value="Shrub">Shrub</option>
+                                <option value="Plant">Plant</option>
                             </select>
                             <BsChevronDown />
                         </CustomSelectWrapper>
                         <CustomSelectWrapper>
-                            <select>
-                                <option selected>Test 1</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
+                            <select name="difficulty" onChange={handleDifficultyChange}>
+                                <option selected value="">Difficulty...</option>
+                                <option value="Easy">Easy</option>
+                                <option value="Med">Medium</option>
+                                <option value="Hard">Difficult</option>
                             </select>
                             <BsChevronDown />
                         </CustomSelectWrapper>
                         <CustomSelectWrapper>
-                            <select>
-                                <option selected>Test 1</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
+                            <select name="sun_requirements" onChange={handleSunChange}>
+                                <option selected value="">Preferred position...</option>
+                                <option value="Shade">Shade</option>
+                                <option value="Half-shade">Half-shade</option>
+                                <option value="Full-sun">Full-sun</option>
                             </select>
                             <BsChevronDown />
                         </CustomSelectWrapper>
                         <CustomSelectWrapper>
-                            <select>
-                                <option selected>Test 1</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
+                            <select name="water_requirements" onChange={handleMoistureChange}>
+                                <option selected value="">Moisture type...</option>
+                                <option value="Wet">Wet</option>
+                                <option value="Medium">Moderate</option>
+                                <option value="Dry">Dry</option>
                             </select>
                             <BsChevronDown />
                         </CustomSelectWrapper>
                     </SearchFormFilters>
+                    {/* <SecondaryBtn>Update results</SecondaryBtn> */}
                 </SearchFormWrapper>
+                <PageFilterWrapper>
+
+
+                    <CustomSelectWrapper bgColor={"transparent"} color={theme.primaryText} borderRadius={"none"} border={"none"} borderBottom={"2px solid #fff"}>
+                        <label>View:</label>
+                        <select name="limit_results" onChange={handleLimitChange}>
+                            <option value="6">6</option>
+                            <option value="12">12</option>
+                            <option selected value="24">24</option>
+                        </select>
+                        <BsChevronDown />
+                    </CustomSelectWrapper>
+                    {/* </PageFilterWrapper>
+                <PageFilterWrapper> */}
+                    <CustomSelectWrapper bgColor={"transparent"} color={theme.primaryText} borderRadius={"none"} border={"none"} borderBottom={"2px solid #fff"}>
+                        <label>Sort:</label>
+                        <select name="sort_results" onChange={handleSortChange}>
+                            <option selected value="ASC">Latin name ASC</option>
+                            <option value="DESC">Latin name DESC</option>
+                        </select>
+                        <BsChevronDown />
+                    </CustomSelectWrapper>
+                </PageFilterWrapper>
+
             </SearchSection>
 
             {/* {query ? (<ResultsHeading initial={{ opacity: 0.2 }} animate={{ opacity: 1 }}>Results</ResultsHeading>) : null} */}
 
-            <FilterBarWrapper>
-                <IconWrapper>
-                    <BsFilter onClick={handleToggleDisplay} />
-                </IconWrapper>
-                <FilterBar display={toggleDisplay}>
-
-                    <FilterSelect name="type" onChange={handlePlantTypeChange}>
-                        <option selected value="">Any type</option>
-                        <option value="Tree">Tree</option>
-                        <option value="Shrub">Shrub</option>
-                        <option value="Plant">Plant</option>
-                    </FilterSelect>
-
-                    <FilterSelect name="difficulty" onChange={handleDifficultyChange}>
-                        <option selected value="">Any difficulty</option>
-                        <option value="Easy">Easy</option>
-                        <option value="Med">Medium</option>
-                        <option value="Hard">Difficult</option>
-                    </FilterSelect>
-
-                    <FilterSelect name="sun_requirements" onChange={handleSunChange}>
-                        <option selected value="">Any sun</option>
-                        <option value="Shade">Shade</option>
-                        <option value="Half-shade">Half-shade</option>
-                        <option value="Full-sun">Full-sun</option>
-                    </FilterSelect>
-
-                    <FilterSelect name="water_requirements" onChange={handleMoistureChange}>
-                        <option selected value="">Any moisture</option>
-                        <option value="Wet">Wet</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Dry">Dry</option>
-                    </FilterSelect>
-
-                    <FilterSelect name="limit_results" onChange={handleLimitChange}>
-                        <option value="6">6</option>
-                        <option value="12">12</option>
-                        <option selected value="24">24</option>
-                    </FilterSelect>
-                </FilterBar>
-            </FilterBarWrapper>
             {error && (<RegularText style={{ textAlign: "center" }}>{error}</RegularText>)}
 
             <ResultsGrid>

@@ -5,38 +5,31 @@ import { device } from '../../config/Breakpoints';
 
 const SearchSection = styled(motion.div)`
   /* background: url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1616435022/search_bg_2616e6cf8c.jpg"); */
-  /* background-color: ${props => props.theme.primaryColour}; */
   background-image: linear-gradient(to left bottom, #2f3e46, #4f5874, #916b92, #d67d91, #ffa17a);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   width: 100%;
-  height:450px;
-  /* margin: 0 0 2rem 0; */
-  padding: 175px 0 0 0;
+  padding: 150px 0 1rem 0;
   text-align: center;
   /* box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
     0 3px 7px -3px rgb(0 0 0 / 30%); */
 
-    /* h2{
-        color: #fff;
-    margin: 0 0 2rem 0;
-    font-size: 3.25rem;
-    font-weight: bold;
-    } */
+    @media ${device.mobileL}  {
+      padding: 100px 0 0 0;
+  }
 `
 const SearchFormWrapper = styled.div`
-  min-height: 125px;
-  width: 500px;
+  width: min(500px, 90%);
   box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
       0 3px 7px -3px rgb(0 0 0 / 30%);
   background-color: ${props => props.theme.secondaryBlue};
   border-radius: 8px;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 1rem 1rem 1rem;
+  margin: 0 0 1rem 0;
   display: flex;
   flex-direction: column;
   align-items:center;
@@ -54,9 +47,10 @@ const SearchBox = styled.input`
   height: 50px;
   font-size: ${props => props.theme.size.regularText};
   font-family: inherit;
+  color: ${props => props.theme.primaryColour};
   outline: none;
   border: none;
-  font-weight: bold;
+  font-weight: 500;
   box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
     0 3px 7px -3px rgb(0 0 0 / 30%);
   border-bottom-left-radius: 20px;
@@ -99,19 +93,48 @@ const SearchBtn = styled.button`
 `
 
 const SearchFormFilters = styled.div`
-  margin-top: 1rem;
+  margin: 1.5rem 0;
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(2, 50%);
   width: 100%;
+
+  @media ${device.mobileL}  {
+    margin: 1.5rem 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+  }
+`;
+
+
+const CustomSelectWrapper = styled.div`
+  margin: 0;
+  padding: 0 0.5rem 0 0;
+  display: flex;
+  cursor: pointer;
+  align-items:center;
+  justify-content: space-between;
+  color: ${props => props.color || props.theme.primaryColour};
+  font-size: ${props => props.theme.size.smallText};
+  font-weight: 400;
+  border:${props => props.border || "2px solid #fff"}; 
+  border-bottom: ${props => props.borderBottom || "none"};
+  border-radius: ${props => props.borderRadius || "20px"};
+  background-color: ${props => props.bgColor || props.theme.primaryText};
+  width: 92%;
+  overflow:hidden;
+
+  @media ${device.mobileL}  {
+    width: 100%;
+  }
 
   select {
     all:unset;
     display:block;
     padding: 0.25rem 0.75rem;
     margin: 0;
-    width: auto;
-    min-width:100px;
+    /* width: auto; */
     min-height: 20px;
     font-size:inherit;
     background-color: transparent;
@@ -119,45 +142,53 @@ const SearchFormFilters = styled.div`
 
     cursor: pointer;
     text-align:left;
-    color: inherit;
+    color: ${props => props.color ? props.color : "inherit"};
     font-weight:inherit;
 
     option {
-      background-color: ${props => props.theme.secondaryBlue};
-      color: inherit;
+      background-color: ${props => props.bgColor || props.theme.primaryText};
+      color: ${props => props.color ? props.theme.primaryColour : "inherit"};
       font-size:inherit;
       font-weight:inherit;
     }
   }
-`;
 
-
-const CustomSelectWrapper = styled.div`
-  margin: 0 auto;
-  padding: 0;
-  display: flex;
-  cursor: pointer;
-  align-items:center;
-  color: #fff;
-  font-size: ${props => props.theme.size.smallText};
-  font-weight: 400;
-  border-bottom: 2px solid #fff;
-
-  /* &:hover {
-    svg {
-      transform: rotate(180deg);
-    }
-  } */
   svg {
     color: inherit;
-    font-size: 1.5rem;
+    font-size: ${props => props.iconSize || "1.5em"};
     font-weight:inherit;
+    /* width: 15%; */
    }
 `;
 
 
+const PageFilterWrapper = styled.div`
+  margin: 0.5rem 2rem;
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  justify-content: space-evenly;
+  color: ${props => props.theme.primaryText};
 
+  & > :first-child {
+    width: 50%;
+  }
 
+  & > *:nth-child(odd) {
+    margin: 0 2rem 0 0;
+  }
+
+  @media ${device.laptop}
+  {
+    margin: 1rem 0 0 0;
+    align-self: center;
+    flex-direction:column;
+
+  & > *:nth-child(even) {
+    margin: 1.5rem 0;
+  }
+  }
+`;
 
 const ResultsHeading = styled(motion.h3)`
   text-align: center;
@@ -176,115 +207,6 @@ const ResultsHeading = styled(motion.h3)`
     border-radius: ${props => props.theme.borderRadius}
   }
 `;
-
-const FilterBarWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 2rem;
-  background: transparent;
-`;
-
-const FilterBar = styled.form`
-  width: 50%;
-  border-radius: ${props => props.theme.borderRadius};
-  margin: 1rem auto 0.5rem auto;
-  padding: 0.5rem 2rem;
-  box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
-      0 3px 7px -3px rgb(0 0 0 / 30%);
-  background-color: ${props => props.theme.secondaryBlue};
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-  
-
-  fieldset {
-  /* border: 1px solid ${props => props.theme.primaryText}; */
-  border:none;
-  border-radius: ${props => props.theme.borderRadius};
-  display: flex;
-  flex-direction:column;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
-      0 3px 7px -3px rgb(0 0 0 / 30%);
-  background-color:${props => props.theme.primaryText};
-    margin: 0.5rem;
-
-    label {
-    color: ${props => props.theme.secondaryBlue};
-    font-weight: 500;
-    font-size: ${props => props.theme.size.regularText};
-    padding-bottom: 0.5rem;
-    }
-
-  }
-
-  
-
-  @media ${device.laptopL}{
-    width: 70%;
-    }
-
-  @media ${device.laptop}{
-    width: 90%;
-    }
-
-    @media ${device.tablet}{
-    display: ${props => props.display ? "flex" : "none"};
-    flex-direction: column;
-    justify-content:flex-start;
-    align-items:center;
-    }
-`;
-
-const IconWrapper = styled.div`
-border: 0;
-margin: 1rem auto 0.5rem auto;
-display: none;
-justify-content: flex-end;
-align-items: center;
-padding: 0;
-
-@media ${device.tablet}{
-    display: flex;
-    }
-
-svg {
-    display: block;
-    color: white;
-    font-size: 2rem;
-
-    cursor: pointer;
-    background-color: ${props => props.theme.secondaryBlue};
-    padding: 0.3rem;
-    height: 47.375px;
-    width: 47.375px;
-    border-radius: ${props => props.theme.borderRadius};
-
-  }
-`;
-
-
-const FilterSelect = styled.select`
-  /* box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
-      0 3px 7px -3px rgb(0 0 0 / 30%); */
-  /* border-radius: ${props => props.theme.borderRadius}; */
-  border: none;
-  padding: 0.2rem 0rem;
-  font-family: inherit;
-  font-size: ${props => props.theme.size.regularText};
-  color: ${props => props.theme.primaryText};
-  background-color: ${props => props.theme.secondaryBlue};
-  /* background-color: transparent; */
-  cursor:pointer;
-
-  @media ${device.tablet}{
-    padding: 0.5rem 0rem;
-    /* width: 150px; */
-    }
-`
 
 const ResultsCard = styled(motion.div)`
   display: flex;
@@ -399,4 +321,4 @@ const InnerCardGrid = styled.div`
 `
 
 
-export { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, CustomSelectWrapper, ResultsHeading, FilterBar, FilterBarWrapper, IconWrapper, FilterSelect, ResultsCard, InnerCardGrid };
+export { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, CustomSelectWrapper, PageFilterWrapper, ResultsHeading, ResultsCard, InnerCardGrid };

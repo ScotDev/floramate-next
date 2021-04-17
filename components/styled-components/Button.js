@@ -41,6 +41,19 @@ const PrimaryBtn = styled(StyledBtn)`
   }
   `;
 
+const SecondaryBtn = styled(StyledBtn)`
+  color: ${props => props.theme.primaryColour};
+  background-color:  ${props => props.theme.primaryText};
+  border: 2px solid transparent;
+  font-weight: 500;
+
+  &:hover, &:focus {
+    color:  ${props => props.theme.primaryText};
+    background-color: ${props => props.theme.secondaryColourLight};
+    border: 2px solid  ${props => props.theme.secondaryColourLight};
+  }
+  `;
+
 const CtaBtn = styled(StyledBtn)`
   color: ${props => props.theme.primaryText};
   border: none;
@@ -113,4 +126,4 @@ button:nth-of-type(1) {
 `;
 
 
-export { StyledBtn, PrimaryBtn, CtaBtn, LinkBtn, BtnGroup, InfoBtn };
+export { StyledBtn, PrimaryBtn, SecondaryBtn, CtaBtn, LinkBtn, BtnGroup, InfoBtn };
