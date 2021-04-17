@@ -226,7 +226,7 @@ const FlexBox = styled(motion.div)`
 
 const ResultsGrid = styled.div`
   display: flex;
-  padding: 1rem 2rem;
+  padding: 3rem 2rem;
   margin: 0 auto;
   flex-wrap: wrap;
   align-items: center;
