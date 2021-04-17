@@ -23,7 +23,7 @@ const SearchSection = styled(motion.div)`
   }
 `
 const SearchFormWrapper = styled.div`
-  width: min(500px, 90%);
+  width: min(500px, 95%);
   box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
       0 3px 7px -3px rgb(0 0 0 / 30%);
   background-color: ${props => props.theme.secondaryBlue};
@@ -33,6 +33,10 @@ const SearchFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items:center;
+
+  @media ${device.mobileL}  {
+    padding: 2rem 0.75rem 1rem 0.75rem;
+  }
 `;
 
 const SearchForm = styled.form`
@@ -96,14 +100,13 @@ const SearchFormFilters = styled.div`
   margin: 1.5rem 0;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(2, 50%);
+  grid-template-columns: repeat(2, 0.5fr);
   width: 100%;
 
   @media ${device.mobileL}  {
     margin: 1.5rem 0 1rem 0;
-    display: flex;
-    flex-direction: column;
-    width: 75%;
+    width: 100%;
+    gap: 1rem;
   }
 `;
 
@@ -123,11 +126,13 @@ const CustomSelectWrapper = styled.div`
   border-bottom: ${props => props.borderBottom || "none"};
   border-radius: ${props => props.borderRadius || "20px"};
   background-color: ${props => props.bgColor || props.theme.primaryText};
-  width: 92%;
   overflow:hidden;
 
   @media ${device.mobileL}  {
     width: 100%;
+    select {
+      padding: 0.25rem 0.5rem;
+    }
   }
 
   select {
@@ -135,7 +140,6 @@ const CustomSelectWrapper = styled.div`
     display:block;
     padding: 0.25rem 0.75rem;
     margin: 0;
-    /* width: auto; */
     min-height: 20px;
     font-size:inherit;
     background-color: transparent;
@@ -158,18 +162,23 @@ const CustomSelectWrapper = styled.div`
     color: inherit;
     font-size: ${props => props.iconSize || "1.5em"};
     font-weight:inherit;
-    /* width: 15%; */
    }
 `;
 
 
 const PageFilterWrapper = styled.div`
-  margin: 0.5rem 2rem;
+  margin: 0.5rem 8rem 0.5rem 0;
   display: flex;
   align-self: flex-end;
   align-items: center;
   justify-content: space-evenly;
   color: ${props => props.theme.primaryText};
+  padding: 0;
+  width: 90%;
+
+  & > * {
+    overflow: unset;
+  }
 
   & > :first-child {
     width: 50%;
@@ -181,12 +190,22 @@ const PageFilterWrapper = styled.div`
 
   @media ${device.laptop}
   {
-    margin: 1rem 0 0 0;
+    margin: 1rem 0 0.5rem 0;
     align-self: center;
-    flex-direction:column;
 
   & > *:nth-child(even) {
-    margin: 1.5rem 0;
+    margin: 1rem 0;
+  }
+  }
+
+  @media ${device.mobileL}{
+
+    & > *:nth-child(odd) {
+    margin: 0 2.5rem 0 0;
+  }
+
+  label {
+    display: none;
   }
   }
 `;

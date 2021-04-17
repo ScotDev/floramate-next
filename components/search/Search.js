@@ -141,7 +141,7 @@ export default function Search({ staticData }) {
                     <SearchFormFilters>
                         <CustomSelectWrapper>
                             <select name="type" onChange={handlePlantTypeChange}>
-                                <option selected value="">Plant type...</option>
+                                <option selected value="">Plant type</option>
                                 <option value="Tree">Tree</option>
                                 <option value="Shrub">Shrub</option>
                                 <option value="Plant">Plant</option>
@@ -150,7 +150,7 @@ export default function Search({ staticData }) {
                         </CustomSelectWrapper>
                         <CustomSelectWrapper>
                             <select name="difficulty" onChange={handleDifficultyChange}>
-                                <option selected value="">Difficulty...</option>
+                                <option selected value="">Difficulty</option>
                                 <option value="Easy">Easy</option>
                                 <option value="Med">Medium</option>
                                 <option value="Hard">Difficult</option>
@@ -159,7 +159,7 @@ export default function Search({ staticData }) {
                         </CustomSelectWrapper>
                         <CustomSelectWrapper>
                             <select name="sun_requirements" onChange={handleSunChange}>
-                                <option selected value="">Preferred position...</option>
+                                <option selected value="">Position</option>
                                 <option value="Shade">Shade</option>
                                 <option value="Half-shade">Half-shade</option>
                                 <option value="Full-sun">Full-sun</option>
@@ -168,7 +168,7 @@ export default function Search({ staticData }) {
                         </CustomSelectWrapper>
                         <CustomSelectWrapper>
                             <select name="water_requirements" onChange={handleMoistureChange}>
-                                <option selected value="">Moisture type...</option>
+                                <option selected value="">Moisture type</option>
                                 <option value="Wet">Wet</option>
                                 <option value="Medium">Moderate</option>
                                 <option value="Dry">Dry</option>
@@ -195,8 +195,8 @@ export default function Search({ staticData }) {
                     <CustomSelectWrapper bgColor={"transparent"} color={theme.primaryText} borderRadius={"none"} border={"none"} borderBottom={"2px solid #fff"}>
                         <label>Sort:</label>
                         <select name="sort_results" onChange={handleSortChange}>
-                            <option selected value="ASC">Latin name ASC</option>
-                            <option value="DESC">Latin name DESC</option>
+                            <option selected value="ASC">Latin ASC</option>
+                            <option value="DESC">Latin DESC</option>
                         </select>
                         <BsChevronDown />
                     </CustomSelectWrapper>
