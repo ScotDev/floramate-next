@@ -18,18 +18,25 @@ const SearchSection = styled(motion.div)`
   /* box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
     0 3px 7px -3px rgb(0 0 0 / 30%); */
 
+    h2{ 
+      font-size: ${props => props.theme.size.title};
+      color: ${props => props.theme.primaryText};
+      margin: 0;
+      padding: 0 1em 0.75em 1em;
+      }
+
     @media ${device.mobileL}  {
       padding: 100px 0 0 0;
   }
 `
 const SearchFormWrapper = styled.div`
-  width: min(500px, 95%);
+  width: min(700px, 95%);
   box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
       0 3px 7px -3px rgb(0 0 0 / 30%);
   background-color: ${props => props.theme.secondaryBlue};
   border-radius: 8px;
-  padding: 1.5rem 1rem 1rem 1rem;
-  margin: 0 0 1rem 0;
+  padding: 2rem;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items:center;
@@ -42,6 +49,7 @@ const SearchFormWrapper = styled.div`
 const SearchForm = styled.form`
   display: flex;
   width: 100%;
+  margin-bottom: 0.75rem;
 `;
 
 const SearchBox = styled.input`
@@ -55,8 +63,8 @@ const SearchBox = styled.input`
   outline: none;
   border: none;
   font-weight: 500;
-  box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
-    0 3px 7px -3px rgb(0 0 0 / 30%);
+  /* box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
+    0 3px 7px -3px rgb(0 0 0 / 30%); */
   border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
   border: none;
@@ -79,8 +87,7 @@ const SearchBtn = styled.button`
   border-top-right-radius: 50px;
   font-weight: 500;
   font-size: 1.75rem;
-  box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
-    0 3px 7px -3px rgb(0 0 0 / 30%);
+
   border: none;
   outline: none;
   cursor: pointer;
@@ -88,125 +95,80 @@ const SearchBtn = styled.button`
   background-image: linear-gradient(to right, #2f3e46, #4f5874, #916b92, #d67d91, #ffa17a);
   background-size: 300%;
   background-position: right;
-  transition: background-position 0.25s;
+  transition: all 0.25s;
 
   &:hover, &:focus{
     background-position: left;
+    box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
+    0 3px 7px -3px rgb(0 0 0 / 30%);
   }
 
 `
 
 const SearchFormFilters = styled.div`
-  margin: 1.5rem 0;
+  margin: 1.5rem 0 0 0;
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
   grid-template-columns: repeat(2, 0.5fr);
   width: 100%;
+  /* font-size: ${props => props.theme.size.regularText}; */
+  font-size: clamp(0.9rem, 1.1rem, 3rem);
 
   @media ${device.mobileL}  {
     margin: 1.5rem 0 1rem 0;
     width: 100%;
     gap: 1rem;
+    /* font-size: ${props => props.theme.size.smallText}; */
   }
 `;
 
-
-const CustomSelectWrapper = styled.div`
-  margin: 0;
-  /* padding: 0 0.5rem 0 0; */
-  padding: 0.25em 0.5em;
-  display: flex;
-  cursor: pointer;
-  align-items:center;
-  justify-content: space-between;
-  color: ${props => props.color || props.theme.primaryColour};
-  font-size: ${props => props.theme.size.smallText};
-  font-weight: 400;
-  border:${props => props.border || "2px solid #fff"}; 
-  border-bottom: ${props => props.borderBottom || "none"};
-  border-radius: ${props => props.borderRadius || "20px"};
-  background-color: ${props => props.bgColor || props.theme.primaryText};
-  overflow:hidden;
-
-  @media ${device.mobileL}  {
-    width: 100%;
-    select {
-      padding: 0.25rem 0.5rem;
-    }
-  }
-
-  select {
+const StyledSelect = styled.select`
     all:unset;
     display:block;
-    padding: 0.25rem 0.75rem;
+    padding: 0.5rem 1rem;
     margin: 0;
     min-height: 20px;
     font-size:inherit;
     background-color: transparent;
     -webkit-appearance: none;
-
+    color: ${props => props.theme.primaryText};
     cursor: pointer;
     text-align:left;
-    color: ${props => props.color ? props.color : "inherit"};
-    font-weight:inherit;
+    font-weight: inherit;
+    background: url('/select_chevron.svg') no-repeat 95% center;
+    border-bottom: 2px solid ${props => props.theme.primaryText};
 
     option {
-      background-color: ${props => props.bgColor || props.theme.primaryText};
-      color: ${props => props.color ? props.theme.primaryColour : "inherit"};
+      background-color: ${props => props.theme.primaryText};
+      color: ${props => props.theme.primaryColour};
       font-size:inherit;
       font-weight:inherit;
     }
-  }
 
-  svg {
-    color: inherit;
-    font-size: ${props => props.iconSize || "1.5em"};
-    font-weight:inherit;
-   }
+    @media ${device.mobileL}  {
+      padding: 0.25rem 0.5rem;
+  }
 `;
 
-
-const PageFilterWrapper = styled.div`
-  margin: 0.5rem 8rem 0.5rem 0;
+const PageSortWrapper = styled.div`
+  margin: 0;
   display: flex;
   align-self: flex-end;
   align-items: center;
-  justify-content: space-evenly;
   color: ${props => props.theme.primaryText};
-  padding: 0;
-  width: 90%;
+  padding: 1.5rem 2rem;
+  max-width: 100%;
+  
+  label { padding-right: 0.25rem}
 
-  & > * {
-    overflow: unset;
+  select:first-of-type {
+    margin-right: 2.5rem; 
+       /* Wrong */
+    min-width: 40px;
   }
-
-  & > :first-child {
-    width: 50%;
-  }
-
-  & > *:nth-child(odd) {
-    margin: 0 2rem 0 0;
-  }
-
-  @media ${device.laptop}
-  {
-    margin: 1rem 0 0.5rem 0;
-    align-self: center;
-
-  & > *:nth-child(even) {
-    margin: 1rem 0;
-  }
-  }
-
-  @media ${device.mobileL}{
-
-    & > *:nth-child(odd) {
-    margin: 0 2.5rem 0 0;
-  }
-
-  label {
-    display: none;
-  }
+  select:last-of-type {
+    margin-right: 2.5rem;
+    min-width: 155px;
   }
 `;
 
@@ -285,7 +247,7 @@ const ResultsCard = styled(motion.div)`
 h5 {
   /* color: #fff; */
   border-bottom: 2px solid ${props => props.theme.secondaryColour};
-  font-size: ${props => props.theme.size.smallText};
+  font-size: ${props => props.theme.size.regularText};
   text-align: center;
   margin: 0.5rem 1.5rem 1rem 1.5rem;
   padding-bottom: 0.3rem;
@@ -326,7 +288,7 @@ const InnerCardGrid = styled.div`
     }
   }
   
-  p{
+  p {
     color: ${props => props.theme.secondaryBlue};
     font-size: calc(${props => props.theme.size.smallText} + 10%); 
     font-weight: 500;
@@ -341,4 +303,4 @@ const InnerCardGrid = styled.div`
 `
 
 
-export { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, CustomSelectWrapper, PageFilterWrapper, ResultsHeading, ResultsCard, InnerCardGrid };
+export { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, StyledSelect, PageSortWrapper, ResultsHeading, ResultsCard, InnerCardGrid };

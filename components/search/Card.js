@@ -20,7 +20,7 @@ export default function Card(props) {
     <Link href={`/species/${data.id}`}>
       <ResultsCard whileHover={{ type: 'spring', scale: 1.06, opacity: 0.75, transition: { duration: .1, bounce: 1, mass: 0.1, damping: 300, stiffness: 300, velocity: 5 } }}  >
         {/* use next image */}
-        <img loading="lazy" src={data.image_url} alt="" />
+        <img loading="lazy" src={data.profile_images[0].formats.medium.url} alt="" />
         <h4>{data.common_name}</h4>
         <div id="divider"></div>
         <h5>{data.latin_name}</h5>

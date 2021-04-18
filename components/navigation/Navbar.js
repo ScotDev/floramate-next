@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
-import { StyledNavbar, NavbarBrand, NavbarList, NavbarListItem, MobileNavbar, MobileNavList, MobileNavItem, MobileNavToggle } from './NavigationUIComponents';
+import { StyledNavbar, NavbarBrand, BrandIcon, NavbarList, NavbarListItem, MobileNavbar, MobileNavList, MobileNavItem, MobileNavToggle } from './NavigationUIComponents';
 import { theme } from '../../config/Theme';
 
 // import BrandImage from "../../public/vercel.svg";
@@ -68,12 +68,18 @@ function Navbar({ bgColor, scrolling }) {
     const router = useRouter()
 
     // Ensures navbar contents visibility on light backgrounds.
-    // This could be done in SASS but I'm used styled-components :)
+    // This could be done in SASS but I'm using styled-components :)
     let darkText;
     if (router.route === "/species/[id]" || router.route === "/") {
         darkText = true
     }
 
+    let showBrandIcon;
+    if (router.route !== "/") {
+        showBrandIcon = true;
+    } else {
+        showBrandIcon = false;
+    }
 
     useEffect(() => {
         const handleRouteChange = (err, url) => {
@@ -106,7 +112,9 @@ function Navbar({ bgColor, scrolling }) {
 
             </NavbarList>
         </StyledNavbar>
-
+        {showBrandIcon && <Link href="/" >
+            <BrandIcon />
+        </Link>}
         <MobileNavToggle initial="initial" animate={toggleOpen ? "open" : "closed"} onClick={() => setToggleOpen(!toggleOpen)} variants={mobileToggleVariants}>
             <motion.div
                 initial="topClosed" animate={toggleOpen ? "topOpen" : "topClosed"}

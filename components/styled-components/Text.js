@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 // This all needs to be made more consistent across the site, far too many custom font-size etc are used to override these properties
 const Title = styled(motion.h1)`
-    font-size: ${props => props.theme.size.title};
+    font-size: ${props => props.fontSize || props.theme.size.title};
     color: ${props => props.color || props.theme.primaryText};
     margin-bottom: 0.5em;
     max-width: ${props => props.maxWidth};

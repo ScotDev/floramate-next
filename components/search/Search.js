@@ -8,7 +8,7 @@ import Card from './Card';
 import { ResultsGrid } from '../styled-components/Utils';
 import { RegularText } from '../styled-components/Text';
 import { SecondaryBtn } from '../styled-components/Button'
-import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, CustomSelectWrapper, PageFilterWrapper, ResultsHeading, FilterBar, FilterBarWrapper, IconWrapper, FilterSelect } from './SearchUIComponents';
+import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, StyledSelect, PageSortWrapper, ResultsHeading, FilterBar, FilterBarWrapper, IconWrapper, FilterSelect } from './SearchUIComponents';
 import { theme } from '../../config/Theme';
 
 
@@ -138,75 +138,63 @@ export default function Search({ staticData }) {
     return (
         <>
             <SearchSection initial={{ opacity: 0.2 }} animate={{ opacity: 1 }} >
+                <h2>Let's get searching</h2>
                 <SearchFormWrapper>
                     <SearchForm>
                         <SearchBox type="text" placeholder="Enter a search term..." ref={searchQuery}></SearchBox>
                         <SearchBtn type="submit" onClick={handleSubmit}><AiOutlineSearch /></SearchBtn>
                     </SearchForm>
                     <SearchFormFilters>
-                        <CustomSelectWrapper>
-                            <select name="type" onChange={handlePlantTypeChange}>
-                                <option defaultValue value="">Plant type</option>
-                                <option value="Tree">Tree</option>
-                                <option value="Shrub">Shrub</option>
-                                <option value="Plant">Plant</option>
-                            </select>
-                            <BsChevronDown />
-                        </CustomSelectWrapper>
-                        <CustomSelectWrapper>
-                            <select name="difficulty" onChange={handleDifficultyChange}>
-                                <option defaultValue value="">Difficulty</option>
-                                <option value="Easy">Easy</option>
-                                <option value="Med">Medium</option>
-                                <option value="Hard">Difficult</option>
-                            </select>
-                            <BsChevronDown />
-                        </CustomSelectWrapper>
-                        <CustomSelectWrapper>
-                            <select name="light_requirements" onChange={handleLightChange}>
-                                <option defaultValue value="">Position</option>
-                                <option value="low">Shade</option>
-                                <option value="med">Half-shade</option>
-                                <option value="high">Full-sun</option>
-                            </select>
-                            <BsChevronDown />
-                        </CustomSelectWrapper>
-                        <CustomSelectWrapper>
-                            <select name="water_requirements" onChange={handleMoistureChange}>
-                                <option defaultValue value="">Moisture type</option>
-                                <option value="high">Wet</option>
-                                <option value="med">Moderate</option>
-                                <option value="low">Dry</option>
-                            </select>
-                            <BsChevronDown />
-                        </CustomSelectWrapper>
+
+                        <StyledSelect name="type" onChange={handlePlantTypeChange}>
+                            <option defaultValue value="">Plant type...</option>
+                            <option value="Tree">Tree</option>
+                            <option value="Shrub">Shrub</option>
+                            <option value="Plant">Plant</option>
+                        </StyledSelect>
+                        <StyledSelect name="difficulty" onChange={handleDifficultyChange}>
+                            <option defaultValue value="">Difficulty...</option>
+                            <option value="Easy">Easy</option>
+                            <option value="Med">Medium</option>
+                            <option value="Hard">Difficult</option>
+                        </StyledSelect>
+
+                        <StyledSelect name="light_requirements" onChange={handleLightChange}>
+                            <option defaultValue value="">Position...</option>
+                            <option value="low">Shade</option>
+                            <option value="med">Half-shade</option>
+                            <option value="high">Full-sun</option>
+                        </StyledSelect>
+
+
+                        <StyledSelect name="water_requirements" onChange={handleMoistureChange}>
+                            <option defaultValue value="">Moisture type...</option>
+                            <option value="high">Wet</option>
+                            <option value="med">Moderate</option>
+                            <option value="low">Dry</option>
+                        </StyledSelect>
+
                     </SearchFormFilters>
                     {/* <SecondaryBtn>Update results</SecondaryBtn> */}
                 </SearchFormWrapper>
-                <PageFilterWrapper>
+                {/* <PageFilterWrapper> */}
+
+                <PageSortWrapper>
+                    <label>View:</label>
+                    <StyledSelect name="limit_results" onChange={handleLimitChange}>
+                        <option value="6">6</option>
+                        <option value="12">12</option>
+                        <option defaultValue value="24">24</option>
+                    </StyledSelect>
 
 
-                    <CustomSelectWrapper bgColor={"transparent"} color={theme.primaryText} borderRadius={"none"} border={"none"} borderBottom={"2px solid #fff"}>
-                        <label>View:</label>
-                        <select name="limit_results" onChange={handleLimitChange}>
-                            <option value="6">6</option>
-                            <option value="12">12</option>
-                            <option defaultValue value="24">24</option>
-                        </select>
-                        <BsChevronDown />
-                    </CustomSelectWrapper>
-                    {/* </PageFilterWrapper>
-                <PageFilterWrapper> */}
-                    <CustomSelectWrapper bgColor={"transparent"} color={theme.primaryText} borderRadius={"none"} border={"none"} borderBottom={"2px solid #fff"}>
-                        <label>Sort:</label>
-                        <select name="sort_results" onChange={handleSortChange}>
-                            <option defaultValue value="ASC">Latin ASC</option>
-                            <option value="DESC">Latin DESC</option>
-                        </select>
-                        <BsChevronDown />
-                    </CustomSelectWrapper>
-                </PageFilterWrapper>
-
+                    <label>Sort:</label>
+                    <StyledSelect name="sort_results" onChange={handleSortChange}>
+                        <option defaultValue value="ASC">Latin name ASC</option>
+                        <option value="DESC">Latin name DESC</option>
+                    </StyledSelect>
+                    {/* </PageFilterWrapper> */}
+                </PageSortWrapper>
             </SearchSection>
 
             {/* {query ? (<ResultsHeading initial={{ opacity: 0.2 }} animate={{ opacity: 1 }}>Results</ResultsHeading>) : null} */}
@@ -214,7 +202,6 @@ export default function Search({ staticData }) {
             {error && (<RegularText style={{ textAlign: "center" }}>{error}</RegularText>)}
 
             <ResultsGrid>
-
                 {isLoading ? (<Spinner />) : items}
             </ResultsGrid>
         </>

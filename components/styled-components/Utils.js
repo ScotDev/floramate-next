@@ -193,6 +193,7 @@ const TextBlockItem = styled.div`
         font-size: 1.1rem;
         font-weight: 400;
         color: ${props => props.theme.secondaryBlue};
+        line-height: 1.4;
     }
 
     ul {

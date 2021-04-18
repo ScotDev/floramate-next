@@ -30,7 +30,6 @@ const NavbarBrand = styled(motion.div)`
   margin: 0;
   cursor: pointer;
   
-
   h4{
     font-size: 2.3rem;
     padding: 0;
@@ -46,12 +45,30 @@ const NavbarBrand = styled(motion.div)`
   }
 `;
 
+const BrandIcon = styled.div`
+  display: none;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  /* margin-right: 1rem; */
+  height: 50px;
+  width: 50px;
+  background: url("/brand.svg") no-repeat center;
+  background-color: transparent;
+
+  @media ${device.laptop}{
+      display: block;
+    }
+`;
+
 const NavbarList = styled(motion.ul)`
     list-style-type: none;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    /* border: 1px solid red; */
     width: 100%;
     height: 100%;
 
@@ -96,62 +113,10 @@ const NavbarListItem = styled(motion.li)`
     &.active:after{
       transform: translateX(-50%) scaleX(1);
     }
-
-    /* &.active { */
-      /* background-color: ${props => props.theme.primaryText}; */
-      /* color: ${props => props.theme.secondaryColour};
-      transform: translateX(-50%) scaleX(1);
-    } */
-    /* &:hover, &:focus { */
-      /* background-color: ${props => props.theme.primaryText}; */
-      /* color: ${props => props.theme.secondaryColour};
-    } */
-
     } 
 
 `
 
-const StyledFooter = styled.footer`
-  /* position:relative;
-  bottom: 0;
-  left: 0; */
-  padding-left: ${props => props.theme.mainContentPadding};
-  padding-right: ${props => props.theme.mainContentPadding};
-  margin:0;
-  overflow: hidden;
-  height: 15vh;
-  width: 100%;
-  background-color: ${props => props.theme.primaryColour || "#f7fffb"};
-  color: ${props => props.theme.primaryAccent || "#6e6448"};
-  display: flex;
-  justify-content: flex-start;
-`
-
-const FooterContent = styled.ul`
-display:flex;
-flex-direction:row;
-padding: 0;
-`
-
-const FooterContentList = styled.ul`
-display:flex;
-flex-direction:column;
-padding: 0;
-padding-right:5rem;
-`
-
-const FooterContentListItem = styled.li`
-      list-style-type: none;
-      line-height: 1.7;
-      /* margin-right: 4rem; */
-      a{
-        color: #f7fffb;
-        &:hover {
-    border-bottom: 2px solid #f7fffb;
-  }
-      }
-
-`;
 
 const MobileNavbar = styled(motion.div)`
   z-index: 9;
@@ -249,4 +214,4 @@ const MobileNavToggle = styled(motion.div)`
     }
 `;
 
-export { StyledNavbar, NavbarBrand, NavbarList, NavbarListItem, StyledFooter, FooterContent, FooterContentList, FooterContentListItem, MobileNavbar, MobileNavList, MobileNavItem, MobileNavToggle };
+export { StyledNavbar, BrandIcon, NavbarBrand, NavbarList, NavbarListItem, MobileNavbar, MobileNavList, MobileNavItem, MobileNavToggle };
