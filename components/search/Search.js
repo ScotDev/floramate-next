@@ -23,7 +23,7 @@ export default function Search({ staticData }) {
     const [sort, setSort] = useState("ASC")
     const [plantType, setPlantType] = useState("")
     const [difficulty, setDifficulty] = useState("")
-    const [sun, setSun] = useState("")
+    const [light, setLight] = useState("")
     const [moisture, setMoisture] = useState("")
     const [data, setData] = useState(staticData);
     const [query, setQuery] = useState("")
@@ -39,7 +39,7 @@ export default function Search({ staticData }) {
 
     let difficultyFilter;
     let plantTypeFilter;
-    let sunFilter;
+    let lightFilter;
     let moistureFilter;
     let queryParam;
 
@@ -55,14 +55,14 @@ export default function Search({ staticData }) {
         plantTypeFilter = "";
     }
 
-    if (sun.length > 0) {
-        sunFilter = `&type=${sun}`;
+    if (light.length > 0) {
+        lightFilter = `&light_requirements=${light}`;
     } else {
-        sunFilter = "";
+        lightFilter = "";
     }
 
     if (moisture.length > 0) {
-        moistureFilter = `&type=${moisture}`;
+        moistureFilter = `&water_requirements=${moisture}`;
     } else {
         moistureFilter = "";
     }
@@ -78,7 +78,7 @@ export default function Search({ staticData }) {
             setError(null)
             setIsLoading(true)
             try {
-                const res = await fetch(`${APIurl}/profiles?${queryParam}_sort=latin_name:${sort}&_limit=${limit}${difficultyFilter}${plantTypeFilter}${sunFilter}${moistureFilter}`);
+                const res = await fetch(`${APIurl}/profiles?${queryParam}_sort=latin_name:${sort}&_limit=${limit}${difficultyFilter}${plantTypeFilter}${lightFilter}${moistureFilter}`);
                 const formattedRes = await res.json();
                 if (formattedRes.length === 0) {
                     setTimeout(() => {
@@ -101,7 +101,7 @@ export default function Search({ staticData }) {
         };
         fetchSearchResults();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [queryParam, limit, sort, difficulty, plantType, sun, moisture])
+    }, [queryParam, limit, sort, difficulty, plantType, light, moisture])
 
 
     let items;
@@ -128,8 +128,8 @@ export default function Search({ staticData }) {
     const handleDifficultyChange = e => {
         setDifficulty(e.target.value)
     }
-    const handleSunChange = e => {
-        setSun(e.target.value)
+    const handleLightChange = e => {
+        setLight(e.target.value)
     }
     const handleMoistureChange = e => {
         setMoisture(e.target.value)
@@ -163,20 +163,20 @@ export default function Search({ staticData }) {
                             <BsChevronDown />
                         </CustomSelectWrapper>
                         <CustomSelectWrapper>
-                            <select name="sun_requirements" onChange={handleSunChange}>
+                            <select name="light_requirements" onChange={handleLightChange}>
                                 <option defaultValue value="">Position</option>
-                                <option value="Shade">Shade</option>
-                                <option value="Half-shade">Half-shade</option>
-                                <option value="Full-sun">Full-sun</option>
+                                <option value="low">Shade</option>
+                                <option value="med">Half-shade</option>
+                                <option value="high">Full-sun</option>
                             </select>
                             <BsChevronDown />
                         </CustomSelectWrapper>
                         <CustomSelectWrapper>
                             <select name="water_requirements" onChange={handleMoistureChange}>
                                 <option defaultValue value="">Moisture type</option>
-                                <option value="Wet">Wet</option>
-                                <option value="Medium">Moderate</option>
-                                <option value="Dry">Dry</option>
+                                <option value="high">Wet</option>
+                                <option value="med">Moderate</option>
+                                <option value="low">Dry</option>
                             </select>
                             <BsChevronDown />
                         </CustomSelectWrapper>
