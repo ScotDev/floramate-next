@@ -32,9 +32,9 @@ export default function Search({ staticData }) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        let trimmedQuery = searchQuery.current.value.toString().trim();
+        let trimmedQuery = searchQuery.current.value.trim();
         setQuery(trimmedQuery)
-        console.log(searchQuery.current.value)
+        console.log(trimmedQuery)
     }
 
     let difficultyFilter;
@@ -141,7 +141,7 @@ export default function Search({ staticData }) {
                 <SearchFormWrapper>
                     <SearchForm>
                         <SearchBox type="text" placeholder="Enter a search term..." ref={searchQuery}></SearchBox>
-                        <SearchBtn type="submit" onClick={handleSubmit} ><AiOutlineSearch /></SearchBtn>
+                        <SearchBtn type="submit" onClick={handleSubmit}><AiOutlineSearch /></SearchBtn>
                     </SearchForm>
                     <SearchFormFilters>
                         <CustomSelectWrapper>
