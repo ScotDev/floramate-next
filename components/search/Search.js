@@ -32,7 +32,8 @@ export default function Search({ staticData }) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        setQuery(searchQuery.current.value)
+        let trimmedQuery = searchQuery.current.value.toString().trim();
+        setQuery(trimmedQuery)
         console.log(searchQuery.current.value)
     }
 
@@ -137,7 +138,6 @@ export default function Search({ staticData }) {
     return (
         <>
             <SearchSection initial={{ opacity: 0.2 }} animate={{ opacity: 1 }} >
-                {/* <h2>Species</h2> */}
                 <SearchFormWrapper>
                     <SearchForm>
                         <SearchBox type="text" placeholder="Enter a search term..." ref={searchQuery}></SearchBox>
