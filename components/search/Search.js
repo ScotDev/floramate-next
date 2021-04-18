@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BsFilter, BsChevronDown } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
 
@@ -28,20 +28,19 @@ export default function Search({ staticData }) {
     const [data, setData] = useState(staticData);
     const [query, setQuery] = useState("")
 
-    const handleChange = e => {
-        e.preventDefault();
-        setQuery(e.target.value)
-    }
+    const searchQuery = useRef("")
 
     const handleSubmit = e => {
         e.preventDefault();
-        setQuery(e.target.value)
+        setQuery(searchQuery.current.value)
+        console.log(searchQuery.current.value)
     }
 
     let difficultyFilter;
     let plantTypeFilter;
     let sunFilter;
     let moistureFilter;
+    let queryParam;
 
     if (difficulty.length > 0) {
         difficultyFilter = `&difficulty=${difficulty}`;
@@ -67,12 +66,18 @@ export default function Search({ staticData }) {
         moistureFilter = "";
     }
 
+    if (query.length > 0) {
+        queryParam = `_q=${query}&`;
+    } else {
+        queryParam = "";
+    }
+
     useEffect(() => {
         const fetchSearchResults = async () => {
             setError(null)
             setIsLoading(true)
             try {
-                const res = await fetch(`${APIurl}/profiles?_sort=latin_name:${sort}&_limit=${limit}${difficultyFilter}${plantTypeFilter}${sunFilter}${moistureFilter}`);
+                const res = await fetch(`${APIurl}/profiles?${queryParam}_sort=latin_name:${sort}&_limit=${limit}${difficultyFilter}${plantTypeFilter}${sunFilter}${moistureFilter}`);
                 const formattedRes = await res.json();
                 if (formattedRes.length === 0) {
                     setTimeout(() => {
@@ -95,7 +100,7 @@ export default function Search({ staticData }) {
         };
         fetchSearchResults();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [limit, sort, difficulty, plantType, sun, moisture])
+    }, [queryParam, limit, sort, difficulty, plantType, sun, moisture])
 
 
     let items;
@@ -135,13 +140,13 @@ export default function Search({ staticData }) {
                 {/* <h2>Species</h2> */}
                 <SearchFormWrapper>
                     <SearchForm>
-                        <SearchBox type="text" placeholder="Enter a search term..." value={query} onChange={handleChange}></SearchBox>
-                        <SearchBtn type="submit" value="Search" onClick={handleSubmit} ><AiOutlineSearch /></SearchBtn>
+                        <SearchBox type="text" placeholder="Enter a search term..." ref={searchQuery}></SearchBox>
+                        <SearchBtn type="submit" onClick={handleSubmit} ><AiOutlineSearch /></SearchBtn>
                     </SearchForm>
                     <SearchFormFilters>
                         <CustomSelectWrapper>
                             <select name="type" onChange={handlePlantTypeChange}>
-                                <option selected value="">Plant type</option>
+                                <option defaultValue value="">Plant type</option>
                                 <option value="Tree">Tree</option>
                                 <option value="Shrub">Shrub</option>
                                 <option value="Plant">Plant</option>
@@ -150,7 +155,7 @@ export default function Search({ staticData }) {
                         </CustomSelectWrapper>
                         <CustomSelectWrapper>
                             <select name="difficulty" onChange={handleDifficultyChange}>
-                                <option selected value="">Difficulty</option>
+                                <option defaultValue value="">Difficulty</option>
                                 <option value="Easy">Easy</option>
                                 <option value="Med">Medium</option>
                                 <option value="Hard">Difficult</option>
@@ -159,7 +164,7 @@ export default function Search({ staticData }) {
                         </CustomSelectWrapper>
                         <CustomSelectWrapper>
                             <select name="sun_requirements" onChange={handleSunChange}>
-                                <option selected value="">Position</option>
+                                <option defaultValue value="">Position</option>
                                 <option value="Shade">Shade</option>
                                 <option value="Half-shade">Half-shade</option>
                                 <option value="Full-sun">Full-sun</option>
@@ -168,7 +173,7 @@ export default function Search({ staticData }) {
                         </CustomSelectWrapper>
                         <CustomSelectWrapper>
                             <select name="water_requirements" onChange={handleMoistureChange}>
-                                <option selected value="">Moisture type</option>
+                                <option defaultValue value="">Moisture type</option>
                                 <option value="Wet">Wet</option>
                                 <option value="Medium">Moderate</option>
                                 <option value="Dry">Dry</option>
@@ -186,7 +191,7 @@ export default function Search({ staticData }) {
                         <select name="limit_results" onChange={handleLimitChange}>
                             <option value="6">6</option>
                             <option value="12">12</option>
-                            <option selected value="24">24</option>
+                            <option defaultValue value="24">24</option>
                         </select>
                         <BsChevronDown />
                     </CustomSelectWrapper>
@@ -195,7 +200,7 @@ export default function Search({ staticData }) {
                     <CustomSelectWrapper bgColor={"transparent"} color={theme.primaryText} borderRadius={"none"} border={"none"} borderBottom={"2px solid #fff"}>
                         <label>Sort:</label>
                         <select name="sort_results" onChange={handleSortChange}>
-                            <option selected value="ASC">Latin ASC</option>
+                            <option defaultValue value="ASC">Latin ASC</option>
                             <option value="DESC">Latin DESC</option>
                         </select>
                         <BsChevronDown />
