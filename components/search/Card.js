@@ -1,5 +1,6 @@
 import React from "react";
 import Link from 'next/link';
+import Image from 'next/image';
 import { ResultsCard, InnerCardGrid } from "./SearchUIComponents";
 import Light from "../mini-components/Light";
 import Water from "../mini-components/Water";
@@ -36,7 +37,8 @@ export default function Card(props) {
   return (
     <Link href={`/species/${data.id}`}>
       <ResultsCard whileHover={{ type: 'spring', scale: 1.03, opacity: 0.75, transition: { duration: .1, mass: 0.1, stiffness: 50 } }} bgColor={accentBgColor}>
-        <img loading="lazy" src={data.profile_images[0].formats.medium.url} alt="" />
+        {/* <img loading="lazy" src={data.profile_images[0].formats.medium.url} alt="" /> */}
+        <Image src={data.profile_images[0].formats.medium.url} alt={data.profile_images[0].alternativeText} width={340} height={225} quality={100} />
         <h4>{data.common_name}</h4>
         <div id="divider"></div>
         <h5>{data.latin_name}</h5>
