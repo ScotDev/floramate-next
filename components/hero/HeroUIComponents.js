@@ -44,8 +44,8 @@ const HeroContainer = styled(motion.div)`
 
 h1 {
   color: ${props => props.theme.primaryColour};
-  font-size: 10rem;
-  font-weight: 700;
+  font-size: 9rem;
+  font-weight: 600;
   margin: 0;
   padding: 0 0 1.5rem 0;
   /* text-shadow: 0 6px 12px rgb(50 50 93 / 25%),
@@ -67,10 +67,10 @@ h1 {
 
 h2, h3{
   color: ${props => props.theme.secondaryBlue};
-  font-size: 2.5rem;
+  font-size: ${props => props.theme.size.largeText};
   font-weight: 500;
   margin: 0;
-  padding: 0 0 1rem 0;
+  padding: 0 0 1em 0;
   /* text-shadow: 0 6px 12px rgb(50 50 93 / 10%),
     0 3px 7px rgb(0 0 0 / 30%); */
   max-width: 40ch;
@@ -79,7 +79,6 @@ h2, h3{
     padding-bottom: 2.5rem;
   }
   @media ${device.laptop} {
-    font-size: ${props => props.theme.size.largeText};
     padding-bottom: 2rem;
   }
   @media ${device.desktopL} {
@@ -88,7 +87,7 @@ h2, h3{
   }
   
   @media ${device.tablet} {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
 }

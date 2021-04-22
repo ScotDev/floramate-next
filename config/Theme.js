@@ -9,9 +9,9 @@ export const theme = {
     secondaryBlue: "#5a6368",
     primaryBg: "#f6f9fc",
     black: "#000",
-    trafficLightRed: "",
-    trafficLightAmber: "#FFA17A",
-    trafficLightGreen: "#689686",
+    trafficLightRed: "hsl(2, 76%, 59%)",
+    trafficLightAmber: "hsl(18, 100%, 70%)",
+    trafficLightGreen: "hsl(159, 18%, 50%)",
     // size: {
     //     title: "4rem",
     //     subtitle: "2.6rem",

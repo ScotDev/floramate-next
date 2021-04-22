@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../config/Breakpoints';
+
 // import { motion } from "framer-motion";
 
 
@@ -15,14 +16,13 @@ const PillItem = styled.div`
     padding: 0.2rem 1.75rem;
     margin: 0;
     font-size: 1.25rem;
-    font-weight: bold;
-    background-color: ${props => props.native ? props.theme.secondaryColour : props.theme.secondaryBlue};
+    font-weight: 500;
+    background-color: ${props => props.bgColor};
 
  &:first-child{
   margin-right: 0.5rem;
  }
 `;
-
 
 const Spinner = styled.div`
 
@@ -31,7 +31,6 @@ const Spinner = styled.div`
   height: 40px;
   text-align: center;
   font-size: 10px;
-
 
  div {
   background-color: ${props => props.theme.secondaryColour};

@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeroContainer } from './HeroUIComponents';
-import { CtaBtn, InfoBtn, BtnGroup } from '../styled-components/Button';
+import { CtaBtn, LinkBtn, BtnGroup } from '../styled-components/Button';
 import Link from 'next/link';
 import { motion } from "framer-motion";
 
@@ -43,11 +43,8 @@ const Hero = () => {
 
             <BtnGroup variants={childrenVariants}>
                 <Link href="/species">
-                    <CtaBtn fontSize={"1.8rem"}>Browse</CtaBtn>
+                    <CtaBtn fontSize={"1.75rem"}>Browse</CtaBtn>
                 </Link>
-                {/* <Link to="/about">
-                    <InfoBtn fontSize={"1.5rem"}>About</InfoBtn>
-                </Link> */}
             </BtnGroup>
 
         </HeroContainer>

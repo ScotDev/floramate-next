@@ -84,6 +84,10 @@ a {
   }
 }
 /* Spinner from https://tobiasahlin.com/spinkit/ */
+
 .test {
   color: hsl(150, 100%, 98%);
+  color: hsl(159, 18%, 50%);
+  color: hsl(18, 100%, 70%);
+  color: hsl(2, 76%, 59%);
 }

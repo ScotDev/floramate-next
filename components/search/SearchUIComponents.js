@@ -215,7 +215,7 @@ const ResultsCard = styled(motion.div)`
   display: block;
   height: 15px;
   width: 100%;
-  background-color: ${props => props.theme.secondaryColour};
+  background-color: ${props => props.bgColor || props.theme.secondaryColour};
   }
 
 

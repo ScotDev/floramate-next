@@ -1,15 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BsFilter, BsChevronDown } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
 
 import Spinner from '../mini-components/Spinner';
-
 import Card from './Card';
 import { ResultsGrid } from '../styled-components/Utils';
 import { RegularText } from '../styled-components/Text';
-import { SecondaryBtn } from '../styled-components/Button'
-import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, StyledSelect, PageSortWrapper, ResultsHeading, FilterBar, FilterBarWrapper, IconWrapper, FilterSelect } from './SearchUIComponents';
-import { theme } from '../../config/Theme';
+import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, StyledSelect, PageSortWrapper, ResultsHeading } from './SearchUIComponents';
 
 
 const APIurl = "https://floramate-cms.herokuapp.com"
@@ -90,7 +86,7 @@ export default function Search({ staticData }) {
                 setData(formattedRes);
                 setTimeout(() => {
                     setIsLoading(false);
-                }, 1000);
+                }, 800);
             } catch (err) {
                 setError(err);
                 setData(staticData);
