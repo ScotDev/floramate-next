@@ -1,23 +1,37 @@
-import React from 'react';
-// import { useInView } from 'react-intersection-observer'
+import React, { useEffect } from 'react';
 import { PageSection, PageSectionTitle } from '../styled-components/Utils';
 
 import Hero from '../hero/Hero';
 import Info from './Info'
 import Featured from './Featured';
 
+const APIurl = "https://floramate-cms.herokuapp.com"
+
 export default function Homepage({ data }) {
 
-    // Replace with plan js on scroll if possible
-    // const [ref, inView] = useInView({
-    //     rootMargin: "620px",
-    //     threshold: 0,
-    // })
+    // Wakes instance before user navigates to browse page.
+    // Heroku free instance goes to sleep after 30 mins with no traffic,
+    // so this cuts down on time until interactive on the search page
+    // by sending an early request to the backend. Probably best
+    // to remove this and upgrade to basic paid tier in production.
+    useEffect(() => {
 
+        const wakeBackendInstance = async () => {
+
+            try {
+                console.log("Waking instance...")
+                const res = await fetch(APIurl + "/about");
+                // const formattedRes = await res.json(); 
+                console.log(res.status)
+            } catch (error) {
+                console.log("Failed to wake instance: ", error)
+            }
+        };
+        wakeBackendInstance()
+    }, [])
 
     return (
         <>
-            {/* <Navbar scrolling={inView}></Navbar> */}
             <Hero></Hero>
             <PageSection bgColor={"#2f3e46"} padding={"10vw"}>
                 <PageSectionTitle color={"#fff"}>Featured</PageSectionTitle>
