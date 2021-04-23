@@ -30,32 +30,33 @@ const SearchSection = styled(motion.div)`
   }
 `
 const SearchFormWrapper = styled.div`
-  width: min(700px, 95%);
+  width: min(650px, 92.5%);
   box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
       0 3px 7px -3px rgb(0 0 0 / 30%);
   background-color: ${props => props.theme.secondaryBlue};
   border-radius: 8px;
-  padding: 2rem;
+  padding: 2rem 0 0 0;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items:center;
-
-  @media ${device.mobileL}  {
-    padding: 2rem 0.75rem 1rem 0.75rem;
-  }
 `;
 
 const SearchForm = styled.form`
   display: flex;
   width: 100%;
   margin-bottom: 0.75rem;
+  padding: 0 2rem;
+
+  @media ${device.mobileL} {
+    padding: 0 0.75rem;
+  }
 `;
 
 const SearchBox = styled.input`
   padding: 10px 15px;
   margin: 0;
-  width: 87.5%;
+  width: 100%;
   height: 50px;
   font-size: ${props => props.theme.size.regularText};
   font-family: inherit;
@@ -65,8 +66,7 @@ const SearchBox = styled.input`
   font-weight: 500;
   /* box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
     0 3px 7px -3px rgb(0 0 0 / 30%); */
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
+  border-radius: 20px;
   border: none;
 
     ::placeholder {
@@ -76,37 +76,46 @@ const SearchBox = styled.input`
 
 const SearchBtn = styled.button`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 0;
-  margin: 0 ;
-  width: 12.5%;
+  margin: 2rem 0 0 0;
+  width: 100%;
   height: 50px;
-  border-bottom-right-radius: 50px;
-  border-top-right-radius: 50px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
   font-weight: 500;
-  font-size: 1.75rem;
+  /* font-size: 1.75rem; */
+  font-size: min(10vw, 1.75rem);
 
   border: none;
   outline: none;
   cursor: pointer;
   color: #fff;
-  background-image: linear-gradient(to right, #2f3e46, #4f5874, #916b92, #d67d91, #ffa17a);
+  /* background-image: linear-gradient(to right, #2f3e46, #4f5874, #916b92, #d67d91, #ffa17a);
   background-size: 300%;
-  background-position: right;
+  background-position: right; */
+  background-color: ${props => props.theme.secondaryColourLight};
   transition: all 0.25s;
 
   &:hover, &:focus{
-    background-position: left;
+    /* background-position: left; */
+    /* background-size: 200%; */
+    background-color: ${props => props.theme.secondaryColour};
     box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
     0 3px 7px -3px rgb(0 0 0 / 30%);
+  }
+
+  svg {
+    font-size: ${props => props.theme.size.largeText};
+    margin-left: 0.5rem;
   }
 
 `
 
 const SearchFormFilters = styled.div`
   margin: 1.5rem 0 0 0;
+  padding: 0 2rem;
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(2, 0.5fr);
@@ -115,10 +124,13 @@ const SearchFormFilters = styled.div`
   font-size: clamp(0.9rem, 1.1rem, 3rem);
 
   @media ${device.mobileL}  {
-    margin: 1.5rem 0 1rem 0;
+    margin: 1.5rem 0 0 0;
+
+    padding: 0 0.75rem;
+  
     width: 100%;
-    gap: 1rem;
-    /* font-size: ${props => props.theme.size.smallText}; */
+   colum-gap: 1rem;
+
   }
 `;
 
@@ -156,7 +168,7 @@ const PageSortWrapper = styled.div`
   align-self: flex-end;
   align-items: center;
   color: ${props => props.theme.primaryText};
-  padding: 1.5rem 2rem;
+  padding: 2rem 2rem 1.5rem 2rem;
   max-width: 100%;
   
   label { padding-right: 0.25rem}

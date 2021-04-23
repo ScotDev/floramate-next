@@ -11,7 +11,7 @@ export default function Homepage({ data }) {
 
     // Wakes instance before user navigates to browse page.
     // Heroku free instance goes to sleep after 30 mins with no traffic,
-    // so this cuts down on time until interactive on the search page
+    // so this cuts down on time until interactivity on the search page
     // by sending an early request to the backend. Probably best
     // to remove this and upgrade to basic paid tier in production.
     useEffect(() => {

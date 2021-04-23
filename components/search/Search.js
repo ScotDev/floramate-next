@@ -138,7 +138,6 @@ export default function Search({ staticData }) {
                 <SearchFormWrapper>
                     <SearchForm>
                         <SearchBox type="text" placeholder="Enter a search term..." ref={searchQuery}></SearchBox>
-                        <SearchBtn type="submit" onClick={handleSubmit}><AiOutlineSearch /></SearchBtn>
                     </SearchForm>
                     <SearchFormFilters>
 
@@ -171,9 +170,9 @@ export default function Search({ staticData }) {
                         </StyledSelect>
 
                     </SearchFormFilters>
-                    {/* <SecondaryBtn>Update results</SecondaryBtn> */}
+                    <SearchBtn type="submit" onClick={handleSubmit}>Search <AiOutlineSearch /></SearchBtn>
                 </SearchFormWrapper>
-                {/* <PageFilterWrapper> */}
+
 
                 <PageSortWrapper>
                     <label>View:</label>
@@ -189,7 +188,7 @@ export default function Search({ staticData }) {
                         <option defaultValue value="ASC">Latin name ASC</option>
                         <option value="DESC">Latin name DESC</option>
                     </StyledSelect>
-                    {/* </PageFilterWrapper> */}
+
                 </PageSortWrapper>
             </SearchSection>
 
