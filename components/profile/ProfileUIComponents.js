@@ -77,6 +77,7 @@ const ProfileImageContainer = styled.div`
   width: 100%;
   min-height: 400px;
   height: 100%;
+  max-height:500px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,10 +1,5 @@
 import React from 'react';
-
-
-// import Image from 'next/image';
 import { ProfileContent, ProfileTitle, ProfileSubtitle, ProfileGrid, ProfileImageContainer } from './ProfileUIComponents.js';
-
-// import Spinner from '../utils/Spinner';
 
 import ProfileImage from './ProfileImage';
 
@@ -14,16 +9,6 @@ import Pill from "../mini-components/Pill";
 
 export default function Profile({ data }) {
 
-    // const id = props.match.params.id
-
-    // const getData = useAPI(`${APIurl}/profiles/${id}`)
-
-    // if (getData.isLoading) {
-    //     return <Spinner />
-    // }
-
-    // const data = getData.data;
-
     return (
         <>
             {data && <ProfileContent>
@@ -32,9 +17,8 @@ export default function Profile({ data }) {
                 <Pill status={data.status} native={data.native} />
                 <ProfileGrid>
                     <ProfileImageContainer>
-                        {/* <Image layout="responsive" width={500} height={500} alt={data.common_name} src={data.image_url} /> */}
                         <ProfileImage alt={`${data.common_name} profile`}
-                            thumb={data.profile_images[0].url}
+                            thumb={data.profile_images[0].formats.thumbnail.url}
                             src={data.profile_images[0].url} />
                     </ProfileImageContainer>
                     <TextBlock data={data} />

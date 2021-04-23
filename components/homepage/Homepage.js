@@ -17,14 +17,15 @@ export default function Homepage({ data }) {
     useEffect(() => {
 
         const wakeBackendInstance = async () => {
-
+            let res;
             try {
                 console.log("Waking instance...")
-                const res = await fetch(APIurl + "/about");
-                // const formattedRes = await res.json(); 
-                console.log(res.status)
+                res = await fetch(APIurl + "/about");
             } catch (error) {
                 console.log("Failed to wake instance: ", error)
+            }
+            finally {
+                console.log(res.status)
             }
         };
         wakeBackendInstance()
