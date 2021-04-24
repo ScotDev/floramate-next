@@ -53,10 +53,8 @@ const BrandIcon = styled.div`
   padding: 0;
   margin: 0;
   cursor: pointer;
-  /* margin-right: 1rem; */
   height: 50px;
   width: 50px;
-  background: url("/brand.svg") no-repeat center;
   background-color: transparent;
 
   @media ${device.laptop}{

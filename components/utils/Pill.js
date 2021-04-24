@@ -1,6 +1,6 @@
 import React from "react";
 import { PillsContainer, PillItem } from "./UIComponents";
-import { theme } from '../../config/Theme';
+import { theme } from '@config/Theme';
 
 export default function Pill({ status, native }) {
 

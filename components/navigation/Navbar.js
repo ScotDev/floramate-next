@@ -71,7 +71,7 @@ function Navbar({ bgColor, scrolling }) {
     // This could be done in SASS but I'm using styled-components :)
     let darkText;
     if (router.route === "/species/[id]" || router.route === "/") {
-        darkText = true
+        darkText = true;
     }
 
     let showBrandIcon;
@@ -97,7 +97,7 @@ function Navbar({ bgColor, scrolling }) {
         {/* <StyledNavbar bgColor={bgColor} borderBottom={scrolling && "#84a98c"} initial="visible" animate={scrolling ? "scroll" : "visible"} variants={navbarVariants} > */}
         <StyledNavbar bgColor={theme.primaryColour} darkText={darkText} borderBottom={"#84a98c"} initial="hidden" animate="visible" variants={navbarVariants} >
             <Link href="/" >
-                <NavbarBrand variants={childrenVariants} darkText={darkText} initial="visible"><img alt="brand name" src={darkText ? "/brand_dark.svg" : "/brand.svg"} /><h4>floramate</h4></NavbarBrand>
+                <NavbarBrand variants={childrenVariants} initial="visible"><img alt="brand name" src={darkText ? "/brand_dark.svg" : "/brand.svg"} /><h4>floramate</h4></NavbarBrand>
             </Link>
             <NavbarList>
                 <NavbarListItem variants={childrenVariants} initial="visible">
@@ -113,7 +113,7 @@ function Navbar({ bgColor, scrolling }) {
             </NavbarList>
         </StyledNavbar>
         {showBrandIcon && <Link href="/" >
-            <BrandIcon />
+            <BrandIcon><img alt="brand name" src={darkText ? "/brand_dark.svg" : "/brand.svg"} /></BrandIcon>
         </Link>}
         <MobileNavToggle initial="initial" animate={toggleOpen ? "open" : "closed"} onClick={() => setToggleOpen(!toggleOpen)} variants={mobileToggleVariants}>
             <motion.div

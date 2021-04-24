@@ -3,8 +3,10 @@ import { ProfileContent, ProfileTitle, ProfileSubtitle, ProfileGrid, ProfileImag
 
 import ProfileImage from './ProfileImage';
 
-import TextBlock from "../mini-components/TextBlock";
-import Pill from "../mini-components/Pill";
+import TextBlock from "@utils/TextBlock";
+import Pill from "@utils/Pill";
+
+import ImageSlider from "@utils/ImageSlider";
 
 
 export default function Profile({ data }) {
@@ -17,9 +19,10 @@ export default function Profile({ data }) {
                 <Pill status={data.status} native={data.native} />
                 <ProfileGrid>
                     <ProfileImageContainer>
-                        <ProfileImage alt={`${data.common_name} profile`}
+                        <ImageSlider data={data.profile_images}></ImageSlider>
+                        {/*   <ProfileImage alt={`${data.common_name} profile`}
                             thumb={data.profile_images[0].formats.thumbnail.url}
-                            src={data.profile_images[0].url} />
+                            src={data.profile_images[0].url} /> */}
                     </ProfileImageContainer>
                     <TextBlock data={data} />
                 </ProfileGrid>

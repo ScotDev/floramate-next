@@ -2,8 +2,8 @@ import React from "react";
 import Link from 'next/link';
 import Image from 'next/image';
 import { ResultsCard, InnerCardGrid } from "./SearchUIComponents";
-import Light from "../mini-components/Light";
-import Water from "../mini-components/Water";
+import Light from "../utils/Light";
+import Water from "../utils/Water";
 
 import { GiPlantRoots } from "react-icons/gi";
 import { AiOutlineVerticalAlignTop } from "react-icons/ai";

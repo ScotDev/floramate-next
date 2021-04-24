@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai'
 
-import Spinner from '../mini-components/Spinner';
+import Spinner from '@utils/Spinner';
 import Card from './Card';
-import { ResultsGrid } from '../styled-components/Utils';
-import { RegularText } from '../styled-components/Text';
+import { ResultsGrid } from '@shared-styled-components/Utils';
+import { RegularText } from '@shared-styled-components/Text';
 import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, StyledSelect, PageSortWrapper, ResultsHeading } from './SearchUIComponents';
 
 
@@ -177,7 +177,6 @@ export default function Search({ staticData }) {
                 <PageSortWrapper>
                     <label>View:</label>
                     <StyledSelect name="limit_results" onChange={handleLimitChange}>
-                        <option value="6">6</option>
                         <option value="12">12</option>
                         <option defaultValue value="24">24</option>
                     </StyledSelect>

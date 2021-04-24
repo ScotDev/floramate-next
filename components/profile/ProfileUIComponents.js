@@ -10,22 +10,21 @@ const ProfileContent = styled.div`
   /* height: 100vh; */
   min-width: 100vw;
   margin: 0 auto;
-  background:#f6f9fc;
+  background: #f6f9fc;
 
   @media ${device.laptop}{
     margin: 0;
     justify-content: center;
     align-items: center;
-    padding: 2rem 4rem;
-
+    /* padding: 2rem 4rem; */
     }
 
   @media ${device.tablet}{
-    padding: 4rem 1.5rem;
+    padding: 8rem 1rem 2rem 1rem;
     }
     
-  @media ${device.mobileM}{
-    padding: 1rem;
+  @media ${device.mobileL}{
+    padding: 7rem 1rem 2rem 1rem;
     }
 
 `;
@@ -75,7 +74,7 @@ const ProfileGrid = styled.div`
 const ProfileImageContainer = styled.div`
   position: relative;
   width: 100%;
-  min-height: 400px;
+  min-height: 450px;
   height: 100%;
   max-height:500px;
   display: flex;
@@ -92,7 +91,7 @@ const ProfileImageContainer = styled.div`
     position: absolute;
     border-radius: 8px;
     height: 100%;
-    width: 80%; 
+    width: 100%; 
     object-fit: cover;
     object-position: center;
 
