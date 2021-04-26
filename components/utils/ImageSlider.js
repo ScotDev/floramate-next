@@ -23,14 +23,14 @@ export default function ImageSlider({ data }) {
 
     return (
         <SliderContainer>
-            <GrPrevious id="left-arrow" onClick={prevSlide} />
+            {length > 1 && <GrPrevious id="left-arrow" onClick={prevSlide} />}
             {ImagesData.map((image, index) => {
                 return (
                     <>
                         { index === currentImage && (<img key={index} src={image.formats.large.url} alt={image.alternativeText} />)}
                     </>)
             })}
-            <GrNext id="right-arrow" onClick={nextSlide} />
+            {length > 1 && <GrNext id="right-arrow" onClick={nextSlide} />}
         </SliderContainer>
     )
 }

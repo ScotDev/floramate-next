@@ -1,7 +1,17 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { device } from '../../config/Breakpoints';
 
 // import { motion } from "framer-motion";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
 
 
 const PillsContainer = styled.div`
@@ -42,6 +52,7 @@ const SliderContainer = styled.div`
 
   img {
     border-radius: 8px;
+    animation: ${fadeIn} 0.25s ease-in;
   }
 
   svg {
@@ -54,6 +65,12 @@ const SliderContainer = styled.div`
     background-color: rgba(0,0,0, 0.4);
     border-radius: 8px;
     padding: 0.25rem;
+    transition: background-color 0.15s ease-in;
+
+    &:hover {
+      background-color: ${props => props.theme.secondaryColour};
+    }
+
     polyline {
       stroke: ${props => props.theme.primaryText};
     } 
