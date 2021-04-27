@@ -86,7 +86,7 @@ const SearchBtn = styled.button`
   border-bottom-left-radius: 8px;
   font-weight: 500;
   /* font-size: 1.75rem; */
-  font-size: min(10vw, 1.6rem);
+  font-size: min(10vw, 1.5rem);
 
   border: none;
   outline: none;

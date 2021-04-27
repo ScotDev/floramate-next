@@ -133,7 +133,7 @@ export default function Search({ staticData }) {
     return (
         <>
             <SearchSection initial={{ opacity: 0.2 }} animate={{ opacity: 1 }} >
-                <h2>Let's get searching</h2>
+                {/* <h2>Let's get searching</h2> */}
                 <SearchFormWrapper>
                     <SearchForm onSubmit={handleSubmit}>
                         <SearchBox type="text" placeholder="Enter a search term..." ref={searchQuery} ></SearchBox>
