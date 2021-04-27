@@ -29,7 +29,7 @@ export default function Home({ data }) {
   )
 }
 
-// Should only fetch profiles tagged as featured.
+// Fetches profiles tagged as featured.
 // Incremental static regeneration, combines quick
 // client loading but allows for featured content to remain updated over time
 export const getStaticProps = async () => {

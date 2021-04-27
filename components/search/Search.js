@@ -26,11 +26,10 @@ export default function Search({ staticData }) {
 
     const searchQuery = useRef("")
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         let trimmedQuery = searchQuery.current.value.trim();
         setQuery(trimmedQuery)
-        console.log(trimmedQuery)
     }
 
     let difficultyFilter;
@@ -136,8 +135,8 @@ export default function Search({ staticData }) {
             <SearchSection initial={{ opacity: 0.2 }} animate={{ opacity: 1 }} >
                 <h2>Let's get searching</h2>
                 <SearchFormWrapper>
-                    <SearchForm>
-                        <SearchBox type="text" placeholder="Enter a search term..." ref={searchQuery}></SearchBox>
+                    <SearchForm onSubmit={handleSubmit}>
+                        <SearchBox type="text" placeholder="Enter a search term..." ref={searchQuery} ></SearchBox>
                     </SearchForm>
                     <SearchFormFilters>
 
