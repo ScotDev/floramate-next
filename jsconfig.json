@@ -6,7 +6,8 @@
             "@config/*": ["config/*"],
             "@shared-styled-components/*": ["components/styled-components/*"],
             "@utils/*": ["components/utils/*"],
-            "@hooks/*": ["hooks/*"]
+            "@hooks/*": ["hooks/*"],
+            "@components/*": ["components/*"]
         }
     }
 }

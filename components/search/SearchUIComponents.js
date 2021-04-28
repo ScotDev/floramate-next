@@ -125,11 +125,9 @@ const SearchFormFilters = styled.div`
 
   @media ${device.mobileL}  {
     margin: 1.5rem 0 0 0;
-
     padding: 0 0.75rem;
-  
     width: 100%;
-   colum-gap: 1rem;
+    colum-gap: 1rem;
 
   }
 `;
@@ -149,6 +147,10 @@ const StyledSelect = styled.select`
     font-weight: inherit;
     background: url('/select_chevron.svg') no-repeat 95% center;
     border-bottom: 2px solid ${props => props.theme.primaryText};
+
+    &:disabled {
+      color: hsl(44, 0%, 70%);
+    }
 
     option {
       background-color: ${props => props.theme.primaryText};

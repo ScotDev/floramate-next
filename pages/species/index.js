@@ -1,8 +1,13 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
-import Search from '../../components/search/Search';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
-export default function Species({ data }) {
+import Search from '@components/search/Search';
+
+const queryClient = new QueryClient();
+
+export default function Species({ profiles, plantTypeFilters, difficultyFilters }) {
+
 
     const pageSEO = {
         title: "Browse species",
@@ -16,16 +21,29 @@ export default function Species({ data }) {
     return (
         <>
             <NextSeo {...pageSEO}></NextSeo>
-            <Search staticData={data} />
+            <QueryClientProvider client={queryClient}>
+                <Search staticData={profiles} difficultyFilters={difficultyFilters} plantTypeFilters={plantTypeFilters} />
+            </QueryClientProvider>
         </>
     )
 }
 
 export const getStaticProps = async (context) => {
-    const res = await fetch(`https://floramate-cms.herokuapp.com/profiles`)
-    const data = await res.json();
+
+    const profilesRes = await fetch(`https://floramate-cms.herokuapp.com/profiles`)
+    const profiles = await profilesRes.json();
+
+    const typeFilterRes = await fetch(`https://floramate-cms.herokuapp.com/plant-type-filters`)
+    const plantTypeFilters = await typeFilterRes.json();
+
+    const diffFiltersRes = await fetch(`https://floramate-cms.herokuapp.com/difficulty-filters`)
+    const difficultyFilters = await diffFiltersRes.json();
 
     return {
-        props: { data }
+        props: {
+            profiles,
+            plantTypeFilters,
+            difficultyFilters
+        }
     }
 }
