@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useQuery, useQueryClient } from 'react-query';
+// import { useQuery, useQueryClient } from 'react-query';
 import Select from 'react-select'
 import { AiOutlineSearch } from 'react-icons/ai'
+
+import useFetch from '@hooks/useFetch';
 
 import Spinner from '@utils/Spinner';
 import Card from './Card';
@@ -9,65 +11,65 @@ import { ResultsGrid } from '@shared-styled-components/Utils';
 import { RegularText } from '@shared-styled-components/Text';
 import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, StyledSelect, PageSortWrapper, ResultsHeading } from './SearchUIComponents';
 
-const APIurl = "https://floramate-cms.herokuapp.com";
+const APIurl = "https://floramate-cms.herokuapp.com/profiles";
 
-const getResults = async (key) => {
+// const getResults = async (key) => {
 
-    const searchTerm = "q=" + key.queryKey[1].searchTerm;
-    const plantTypes = key.queryKey[2].types.map(val => `type=${val}`);
-    const difficulties = key.queryKey[3].difficulties.map(val => `difficulty=${val}`);
+//     const searchTerm = "q=" + key.queryKey[1].searchTerm;
+//     const plantTypes = key.queryKey[2].types.map(val => `type=${val}`);
+//     const difficulties = key.queryKey[3].difficulties.map(val => `difficulty=${val}`);
 
-    // console.log(Object.keys(key.queryKey[2]))
+//     // console.log(Object.keys(key.queryKey[2]))
 
-    const typeFilterString = plantTypes.join("&");
-    const difficultyFilterString = difficulties.join("&");
+//     const typeFilterString = plantTypes.join("&");
+//     const difficultyFilterString = difficulties.join("&");
 
-    // There has to be a clearn/more programmatic way of building these queries
+//     // There has to be a clearn/more programmatic way of building these queries
 
-    if (searchTerm && plantTypes || difficulties) {
-        const res = await fetch(`${APIurl}/profiles?_${searchTerm}&${typeFilterString}&${difficultyFilterString}`);
-        const formattedRes = await res.json();
-        return formattedRes;
-    }
-    if (searchTerm) {
-        const res = await fetch(`${APIurl}/profiles?_${searchTerm}`);
-        const formattedRes = await res.json();
-        return formattedRes;
-    }
+//     if (searchTerm && plantTypes || difficulties) {
+//         const res = await fetch(`${APIurl}/profiles?_${searchTerm}&${typeFilterString}&${difficultyFilterString}`);
+//         const formattedRes = await res.json();
+//         return formattedRes;
+//     }
+//     if (searchTerm) {
+//         const res = await fetch(`${APIurl}/profiles?_${searchTerm}`);
+//         const formattedRes = await res.json();
+//         return formattedRes;
+//     }
 
 
-    const res = await fetch(`${APIurl}/profiles`);
-    return res.json();
-}
+//     const res = await fetch(`${APIurl}/profiles`);
+//     return res.json();
+// }
 
 export default function Search({ staticData, plantTypeFilters, difficultyFilters }) {
-    const queryClient = useQueryClient();
+    // const queryClient = useQueryClient();
 
     // const vals = plantTypeFilters.map(item => console.log(item))
 
     // console.log(plantTypeFilters)
-    const [searchTerm, setSearchTerm] = useState("");
+    // const [searchTerm, setSearchTerm] = useState("");
     const [plantTypes, setPlantTypes] = useState([]);
     const [difficulties, setDifficulties] = useState([]);
     const [customError, setCustomError] = useState(false);
 
 
     // Need to find out how to pass err if no results found
-    const { data, status, isFetching, error } = useQuery(['results', { searchTerm: searchTerm }, { types: plantTypes }, { difficulties: difficulties }], getResults, { initialData: staticData });
+    // const { data, status, isFetching, error } = useQuery(['results', { searchTerm: searchTerm }, { types: plantTypes }, { difficulties: difficulties }], getResults, { initialData: staticData });
 
-    useEffect(() => {
-        if (data.length < 1) {
-            setCustomError("No results found, please expand your search");
-            console.log("fuck")
-        } else {
-            setCustomError(false)
-        }
+    // useEffect(() => {
+    //     if (data.length < 1) {
+    //         setCustomError("No results found, please expand your search");
+    //     } else {
+    //         setCustomError(false)
+    //     }
 
-    }, [data])
+    // }, [data])
 
-    // Transition all to redux
 
-    const [isLoading, setIsLoading] = useState(false);
+    const { data, isLoading, error, handleSearch, handleFilters, resetSearch } = useFetch(staticData, null);
+
+    // const [isLoading, setIsLoading] = useState(false);
     const [limit, setLimit] = useState(10)
     const [sort, setSort] = useState("ASC")
 
@@ -79,8 +81,11 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
     const handleSubmit = async (e) => {
         e.preventDefault();
         let trimmedQuery = searchQuery.current.value.trim();
-        setSearchTerm(trimmedQuery);
+        // setSearchTerm(trimmedQuery);
+        handleSearch(APIurl, trimmedQuery, { type: plantTypes, difficulty: difficulties })
     }
+
+
 
     let lightFilter;
     let moistureFilter;
@@ -126,7 +131,6 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
     //     fetchSearchResults();
     //     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, [queryParam, limit, sort, difficulty, plantType, light, moisture])
-
 
     let items;
 
@@ -200,7 +204,8 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
                         </StyledSelect> */}
 
                     </SearchFormFilters>
-                    <SearchBtn type="submit" onClick={handleSubmit}>Search <AiOutlineSearch /></SearchBtn>
+                    <button onClick={() => { resetSearch(), searchQuery.current.value = "" }}>Reset search</button>    <SearchBtn type="submit" onClick={handleSubmit}>Search <AiOutlineSearch /></SearchBtn>
+
                 </SearchFormWrapper>
 
 
@@ -226,7 +231,7 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
             {customError && (<RegularText style={{ textAlign: "center" }}>{customError}</RegularText>)}
 
             <ResultsGrid>
-                {status === "loading" || isFetching ? (<Spinner />) : items}
+                {isLoading ? (<Spinner />) : items}
             </ResultsGrid>
         </>
     )
