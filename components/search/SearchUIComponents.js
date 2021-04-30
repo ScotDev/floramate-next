@@ -13,7 +13,7 @@ const SearchSection = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 150px 0 1rem 0;
+  padding: 150px 0 3rem 0;
   margin: 0;
   text-align: center;
   /* box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
