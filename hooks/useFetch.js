@@ -1,121 +1,92 @@
 import { useState, useEffect } from "react";
 
 const useFetch = (initialData, endpointURL) => {
-
     const [url, setUrl] = useState(endpointURL);
+
     // Core state returned from hook
     const [data, setData] = useState(initialData);
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
-    // State to handle search queries and filtering
-    const [userQuery, setUserQuery] = useState("")
-    const [params, setParams] = useState(null)
+    const [hasQuery, setHasQuery] = useState(false);
 
-    // If params received then process them and set them to params state and concat them to endpoint url
-
-    const handleSearch = async (endpoint, query, filterObject) => {
+    // Processes queries and filter params into usable strings
+    // to pass to a data fetching function
+    const handleSearch = async (query, filterObject) => {
 
         const { type, difficulty } = filterObject;
 
-        setUrl(endpoint);
 
-        if (query.length > 0) {
-            setUserQuery(`_q=${query}`);
-        } else {
-            setUserQuery("")
-        }
+        // Create state that is just queryString. Use this function to set is to userQuery and/or params, no need for 2 different states.
+        // That means that there is only one state change to trigger the useEffect to run this. Or will this just work as an async function?
+        // Either way, it's more condensed and DRY
 
-        // if (filterObject) {
 
-        // make type dynamic
-        const types = type.map(val => `type=${val}`);
-        const typeFilterString = types.join("&");
-        const difficulties = difficulty.map(val => `difficulty=${val}`);
-        const difficultyFilterString = difficulties.join("&");
+        // Handle filters. You can attempt to make this more dynamic
+        // and reusable, but just try to get it working with keys hardcoded
+
+        const types = await type.map(val => `type=${val}`);
+        const typeFilterString = await types.join("&") + "&";
+        const difficulties = await difficulty.map(val => `difficulty=${val}`);
+        const difficultyFilterString = await difficulties.join("&");
         // for (let x = 0, len = type.length; x < len; x++) {
         //     console.log(type[x])
         //     types += `type=${type[x]}`
+
+        // This maybe doesn't need to be in state, but I'm not usre
+        let queryParam;
+        if (query.length > 0 || query !== undefined || !isNaN(query)) {
+            queryParam = "q=" + query + "&";
+        }
+        //  else if (query === undefined) {
+        //     queryParam = "";
         // }
 
-        setParams(typeFilterString + "&" + difficultyFilterString)
-        // console.log(params)
+        setUrl(endpointURL + "?_" + queryParam + typeFilterString + difficultyFilterString);
+        setHasQuery(true);
 
-        // }
-        // let target;
-        // if (userQuery && params) {
-        //     target = url + "?" + userQuery + params;
-        // }
-        // if (userQuery) {
-        //     target = url + "?" + userQuery;
-        // }
-
-        // const filteredResults = await getResults(target);
-        // console.log(filteredResults)
-
-
+        console.log("handleSearch ran")
     }
-
-    // use useffect to trigger data fetching when params change maybe
-
-    const getResults = async (target) => {
-        const res = await fetch(target);
-        console.log("Target here: ", target)
-        const formattedRes = await res.json();
-        setData(formattedRes);
-        // return formattedRes;
-    }
-
-    useEffect(() => {
-        const target = url + "?" + userQuery + params;
-        getResults(target)
-    }, [params])
 
     const resetSearch = () => {
-        setUserQuery("");
-        setUrl("");
+        setHasQuery(false);
+        setUrl(endpointURL);
         setData(initialData);
     }
 
-
-
     useEffect(() => {
-
-        // let target;
-        // if (userQuery && params) {
-        //     target = url + "?" + userQuery + params;
-        // }
-
-        //  else if (params) {
-        //     target = url + "?" + params;
-        // } 
-        // if (userQuery) {
-        //     target = url + "?" + userQuery;
-        // }
-        // else {
-        //     target = endpointURL;
-        // };
-
         const fetchData = async () => {
-            await fetch(endpointURL)
+            setIsLoading(true)
+            await fetch(url)
                 .then(res => {
                     if (!res.ok) {
-                        throw Error("Could not retrieve specified resource")
+                        // this throws error which is caught below
+                        throw new Error("Could not retrieve specified resource")
                     }
                     return res.json();
                 })
                 .then(data => {
+                    if (data.length < 1 || data === undefined) {
+                        setData([])
+                        throw new Error("No results found")
+                    }
                     setData(data);
-                    setIsLoading(false);
-                    setError(null)
+                    setTimeout(() => {
+                        setIsLoading(false);
+                    }, 1000);
+
+                    setError(null);
                 })
                 .catch(err => {
-                    setIsLoading(false);
+                    setTimeout(() => {
+                        setIsLoading(false);
+                    }, 1000);
                     setError(err.message);
                 })
         };
         fetchData();
-    }, [url]);
+        console.log("fetchData ran: ", url)
+    }, [url, hasQuery]);
 
     return { data, error, isLoading, handleSearch, resetSearch };
 };

@@ -34,10 +34,10 @@ const HeroContainer = styled(motion.div)`
 
     @media ${device.tablet}{
     text-align: center;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    padding-left: 0;
+    padding-right: 0;
     justify-content: flex-start;
-    padding-top: 4rem;
+    padding-top: 5rem;
 
     background-image:url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1618567631/outdoor_mobile_pn8prb.svg");
     }
@@ -87,7 +87,8 @@ h2, h3{
   }
   
   @media ${device.tablet} {
-    font-size: 2rem;
+    font-size: 1.9rem;
+    max-width: 98%;
   }
 
 }
