@@ -14,7 +14,7 @@ const useFetch = (initialData, endpointURL) => {
     // to pass to a data fetching function
     const handleSearch = async (query, filterObject) => {
 
-        const { type, difficulty } = filterObject;
+        const { type, difficulty, moisture, light } = filterObject;
 
 
         // Create state that is just queryString. Use this function to set is to userQuery and/or params, no need for 2 different states.
@@ -26,9 +26,16 @@ const useFetch = (initialData, endpointURL) => {
         // and reusable, but just try to get it working with keys hardcoded
 
         const types = await type.map(val => `type=${val}`);
-        const typeFilterString = await types.join("&") + "&";
+        const typeFilterString = await types.join("&");
+
         const difficulties = await difficulty.map(val => `difficulty=${val}`);
         const difficultyFilterString = await difficulties.join("&");
+
+        const moistures = await moisture.map(val => `water_requirements=${val}`);
+        const moisturesFilterString = await moistures.join("&");
+
+        const lights = await light.map(val => `water_requirements=${val}`);
+        const lightsFilterString = await lights.join("&");
         // for (let x = 0, len = type.length; x < len; x++) {
         //     console.log(type[x])
         //     types += `type=${type[x]}`
@@ -42,7 +49,7 @@ const useFetch = (initialData, endpointURL) => {
         //     queryParam = "";
         // }
 
-        setUrl(endpointURL + "?_" + queryParam + typeFilterString + difficultyFilterString);
+        setUrl(endpointURL + "?_" + queryParam + typeFilterString + difficultyFilterString + moisturesFilterString + lightsFilterString);
         setHasQuery(true);
 
         console.log("handleSearch ran")

@@ -94,7 +94,30 @@ const LinkBtn = styled(StyledBtn)`
     font-size: 1.75em;
     padding: 0;
     margin: 0 0 0 0.1em;
-    /* height: 34px; */
+  }
+
+`;
+const DiscreetBtn = styled(StyledBtn)`
+  color: ${props => props.theme.primaryText};
+  background-color: transparent;
+  padding: 0;
+  font-size: ${props => props.theme.size.smallText};
+  box-shadow: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  line-height: 1.4;
+  margin: 1rem 2rem 0.25rem 0;
+  align-self: flex-end;
+
+  &:hover, &:focus {
+    /* text-decoration: underline; */
+    border-bottom: 2px solid ${props => props.theme.primaryText};
+  }
+
+    svg {
+    font-size: 1.75em;
+    padding: 0;
+    margin: 0 0 0 0.1em;
   }
 `;
 
@@ -126,4 +149,4 @@ button:nth-of-type(1) {
 `;
 
 
-export { StyledBtn, PrimaryBtn, SecondaryBtn, CtaBtn, LinkBtn, BtnGroup, InfoBtn };
+export { StyledBtn, PrimaryBtn, SecondaryBtn, CtaBtn, LinkBtn, BtnGroup, InfoBtn, DiscreetBtn };

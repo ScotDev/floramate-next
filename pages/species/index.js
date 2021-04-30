@@ -6,7 +6,7 @@ import Search from '@components/search/Search';
 
 const queryClient = new QueryClient();
 
-export default function Species({ profiles, plantTypeFilters, difficultyFilters }) {
+export default function Species({ profiles, plantTypeFilters, difficultyFilters, moistureFilters, lightFilters }) {
 
 
     const pageSEO = {
@@ -22,7 +22,7 @@ export default function Species({ profiles, plantTypeFilters, difficultyFilters 
         <>
             <NextSeo {...pageSEO}></NextSeo>
             <QueryClientProvider client={queryClient}>
-                <Search staticData={profiles} difficultyFilters={difficultyFilters} plantTypeFilters={plantTypeFilters} />
+                <Search staticData={profiles} difficultyFilters={difficultyFilters} plantTypeFilters={plantTypeFilters} moistureFilters={moistureFilters} lightFilters={lightFilters} />
             </QueryClientProvider>
         </>
     )
@@ -39,11 +39,19 @@ export const getStaticProps = async (context) => {
     const diffFiltersRes = await fetch(`https://floramate-cms.herokuapp.com/difficulty-filters`)
     const difficultyFilters = await diffFiltersRes.json();
 
+    const moistureFiltersRes = await fetch(`https://floramate-cms.herokuapp.com/moisture-filters`)
+    const moistureFilters = await moistureFiltersRes.json();
+
+    const lightFiltersRes = await fetch(`https://floramate-cms.herokuapp.com/position-filters`)
+    const lightFilters = await lightFiltersRes.json();
+
     return {
         props: {
             profiles,
             plantTypeFilters,
-            difficultyFilters
+            difficultyFilters,
+            moistureFilters,
+            lightFilters
         }
     }
 }

@@ -27,7 +27,7 @@ const SearchSection = styled(motion.div)`
       }
 
     @media ${device.mobileL}  {
-      padding: 100px 0 0 0;
+      padding: 175px 0 3rem 0;
   }
 `
 const SearchFormWrapper = styled.div`
@@ -80,7 +80,7 @@ const SearchBtn = styled.button`
   justify-content: center;
   align-items: center;
   padding: 0;
-  margin: 2rem 0 0 0;
+  margin: 0.5rem 0 0 0;
   width: 100%;
   height: 50px;
   border-bottom-right-radius: 8px;

@@ -10,10 +10,11 @@ import Card from './Card';
 import { ResultsGrid } from '@shared-styled-components/Utils';
 import { RegularText } from '@shared-styled-components/Text';
 import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, StyledSelect, PageSortWrapper, ResultsHeading } from './SearchUIComponents';
+import { DiscreetBtn } from '@shared-styled-components/Button';
 
 const APIurl = "https://floramate-cms.herokuapp.com/profiles";
 
-export default function Search({ staticData, plantTypeFilters, difficultyFilters }) {
+export default function Search({ staticData, plantTypeFilters, difficultyFilters, moistureFilters, lightFilters }) {
     // const queryClient = useQueryClient();
 
     // const vals = plantTypeFilters.map(item => console.log(item))
@@ -24,11 +25,16 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
     // const [data, setData] = useState(staticData)
     const [plantTypes, setPlantTypes] = useState([]);
     const [difficulties, setDifficulties] = useState([]);
+    // rename, a bit stupid
+    const [moistures, setMoistures] = useState([]);
+    const [lights, setLights] = useState([])
     const [userError, setUserError] = useState(null);
 
     const searchQuery = useRef(null);
     const selectRef = useRef("")
     const selectRef2 = useRef("")
+    const selectRef3 = useRef("")
+    const selectRef4 = useRef("")
 
     const { data, error, isLoading, handleSearch, resetSearch } = useFetch(staticData, APIurl);
 
@@ -37,6 +43,7 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
     const [sort, setSort] = useState("ASC")
     const [light, setLight] = useState("")
     const [moisture, setMoisture] = useState("")
+
 
 
     useEffect(() => {
@@ -55,7 +62,7 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
         if (!trimmedQuery || trimmedQuery.length < 2 || !isNaN(trimmedQuery)) {
             // resetSearch()
             setUserError("Please enter a valid search term")
-            return
+            return;
         }
 
         // Doesn't search if filters are valid but no valid search term. Should I change this?
@@ -65,7 +72,7 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
         // } else {
         //     handleSearch(trimmedQuery, { type: plantTypes, difficulty: difficulties })
         // }
-        handleSearch(trimmedQuery, { type: plantTypes, difficulty: difficulties })
+        handleSearch(trimmedQuery, { type: plantTypes, difficulty: difficulties, moisture: moistures, light: lights })
     }
 
 
@@ -110,6 +117,8 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
         searchQuery.current.value = "";
         selectRef.current.select.clearValue();
         selectRef2.current.select.clearValue();
+        selectRef3.current.select.clearValue();
+        selectRef4.current.select.clearValue();
     }
 
     return (
@@ -146,44 +155,50 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
                             placeholder="Difficulty..."
                             onChange={values => setDifficulties(values.map(difficulty => difficulty.value))}
                         />
-
-                        {/* <StyledSelect name="light_requirements" onChange={handleLightChange}>
-                            <option defaultValue value="">Position...</option>
-                            <option value="low">Shade</option>
-                            <option value="med">Half-shade</option>
-                            <option value="high">Full-sun</option>
-                        </StyledSelect>
-
-
-                        <StyledSelect name="water_requirements" onChange={handleMoistureChange}>
-                            <option defaultValue value="">Moisture type...</option>
-                            <option value="high">Wet</option>
-                            <option value="med">Moderate</option>
-                            <option value="low">Dry</option>
-                        </StyledSelect> */}
-
+                        <Select
+                            ref={selectRef3}
+                            getOptionLabel={option => option.value}
+                            getOptionValue={option => option._id}
+                            options={moistureFilters}
+                            instanceId="moistures"
+                            isMulti
+                            isClearable
+                            placeholder="Moisture..."
+                            onChange={values => setMoistures(values.map(moisture => moisture.value.toLowerCase()))}
+                        />
+                        <Select
+                            ref={selectRef4}
+                            getOptionLabel={option => option.value}
+                            getOptionValue={option => option._id}
+                            options={lightFilters}
+                            instanceId="lights"
+                            isMulti
+                            isClearable
+                            placeholder="Light..."
+                            onChange={values => setLights(values.map(light => light.value.toLowerCase()))}
+                        />
                     </SearchFormFilters>
-                    {/* <button onClick={clearFilters}>Reset search</button> */}
+                    <DiscreetBtn onClick={clearFilters}>Reset search</DiscreetBtn>
                     <SearchBtn type="submit" onClick={handleSubmit}>Search</SearchBtn>
 
                 </SearchFormWrapper>
 
 
-                <PageSortWrapper>
-                    {/* <label>View:</label>
+                {/* <PageSortWrapper> */}
+                {/* <label>View:</label>
                     <StyledSelect name="limit_results" onChange={handleLimitChange}>
                         <option value="12">12</option>
                         <option defaultValue value="24">24</option>
                     </StyledSelect> */}
 
 
-                    <label>Sort:</label>
+                {/* <label>Sort:</label>
                     <StyledSelect disabled name="sort_results" onChange={handleSortChange}>
                         <option defaultValue value="ASC">Latin name ASC</option>
                         <option value="DESC">Latin name DESC</option>
                     </StyledSelect>
 
-                </PageSortWrapper>
+                </PageSortWrapper> */}
             </SearchSection>
 
             {/* {!userError && ? (<ResultsHeading initial={{ opacity: 0.2 }} animate={{ opacity: 1 }}>Results</ResultsHeading>): null} */}
