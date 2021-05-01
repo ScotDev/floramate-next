@@ -27,7 +27,7 @@ export default function ImageSlider({ data }) {
             {ImagesData.map((image, index) => {
                 return (
                     <>
-                        { index === currentImage && (<img key={index} src={image.formats.large.url} alt={image.alternativeText} />)}
+                        { index === currentImage && (<img key={image._id} src={image.formats.large.url} alt={image.alternativeText} />)}
                     </>)
             })}
             {length > 1 && <GrNext id="right-arrow" onClick={nextSlide} />}

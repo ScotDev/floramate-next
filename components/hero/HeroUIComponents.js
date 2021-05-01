@@ -57,11 +57,13 @@ h1 {
     padding: 2rem 0 1.75rem 0;
   }
   @media ${device.laptop} {
-    font-size: 6rem;
+    /* font-size: 6rem; */
     padding-bottom: 2rem;
   }
   @media ${device.tablet} {
-    font-size: 4.75rem;
+    font-size: 19vw;
+    max-width: 98%;
+    padding-bottom: 1.5rem;
   }
 }
 
@@ -87,7 +89,7 @@ h2, h3{
   }
   
   @media ${device.tablet} {
-    font-size: 1.9rem;
+    font-size: 7.5vw;
     max-width: 98%;
   }
 

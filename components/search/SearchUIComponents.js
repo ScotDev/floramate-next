@@ -223,7 +223,13 @@ const ResultsCard = styled(motion.div)`
   overflow: hidden;
   cursor: pointer;
   -webkit-font-smoothing: antialiased;
-  transition: all ease 0.2s;
+  transition: all ease-in 0.2s;
+  transform: scale(1);
+
+  &:hover {
+    transform: scale(1) translateY(-10px);
+    opacity: 0.75;    
+  }
 
   &::before {
   content: '';
