@@ -299,6 +299,17 @@ const FilterIconWrapper = styled.div`
   }
 `;
 
+const ResultsErrorWrapper = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%,-50%);
+
+  @media ${device.laptop} {
+    transform: translate(-50%, 0%);
+  }
+`;
+
 const StyledSelect = styled.select`
     all:unset;
     display:block;
@@ -489,4 +500,4 @@ const InnerCardGrid = styled.div`
 `
 
 
-export { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFilters, ResultsSection, ResultsGrid, StyledSelect, PageSortWrapper, ResultsHeading, FilterIconWrapper, ResultsCard, InnerCardGrid };
+export { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFilters, ResultsSection, ResultsGrid, StyledSelect, PageSortWrapper, ResultsHeading, FilterIconWrapper, ResultsErrorWrapper, ResultsCard, InnerCardGrid };

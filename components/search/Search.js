@@ -8,7 +8,7 @@ import useFetch from '@hooks/useFetch';
 import Spinner from '@utils/Spinner';
 import Card from './Card';
 import { RegularText } from '@shared-styled-components/Text';
-import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFilters, ResultsSection, ResultsGrid, StyledSelect, PageSortWrapper, ResultsHeading, FilterIconWrapper } from './SearchUIComponents';
+import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFilters, ResultsSection, ResultsGrid, StyledSelect, PageSortWrapper, ResultsHeading, FilterIconWrapper, ResultsErrorWrapper } from './SearchUIComponents';
 import { CtaBtn, DiscreetBtn } from '@shared-styled-components/Button';
 
 const APIurl = "https://floramate-cms.herokuapp.com/profiles";
@@ -142,7 +142,7 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
 
 
                 </PageSortWrapper> */}
-                {userError && (<RegularText style={{ textAlign: "center" }}>{userError}</RegularText>)}
+
 
                 <FilterIconWrapper onClick={() => { setShowMobileFilters(!showMobileFilters) }} >
                     <BsFilter />
@@ -204,7 +204,9 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
                     <CtaBtn onClick={handleSubmit}>Update results</CtaBtn>
                 </SearchFilters>
 
+
                 <ResultsGrid>
+                    <ResultsErrorWrapper>{userError && (<RegularText style={{ textAlign: "center" }} color={"#fff"}>{userError}</RegularText>)}</ResultsErrorWrapper>
                     {isLoading ? (<Spinner />) : items}
                 </ResultsGrid>
             </ResultsSection>
