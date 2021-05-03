@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import { useQuery, useQueryClient } from 'react-query';
-import Select from 'react-select'
-import { AiOutlineSearch } from 'react-icons/ai'
+import Select from 'react-select';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { BsFilter } from 'react-icons/bs';
 
 import useFetch from '@hooks/useFetch';
 
 import Spinner from '@utils/Spinner';
 import Card from './Card';
-import { ResultsGrid } from '@shared-styled-components/Utils';
 import { RegularText } from '@shared-styled-components/Text';
-import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFilters, ResultsSection, StyledSelect, PageSortWrapper, ResultsHeading } from './SearchUIComponents';
+import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFilters, ResultsSection, ResultsGrid, StyledSelect, PageSortWrapper, ResultsHeading, FilterIconWrapper } from './SearchUIComponents';
 import { CtaBtn, DiscreetBtn } from '@shared-styled-components/Button';
 
 const APIurl = "https://floramate-cms.herokuapp.com/profiles";
@@ -22,7 +21,7 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
     // console.log(plantTypeFilters)
     // const [searchTerm, setSearchTerm] = useState("");
 
-    // const [data, setData] = useState(staticData)
+    const [showMobileFilters, setShowMobileFilters] = useState(false);
     const [plantTypes, setPlantTypes] = useState([]);
     const [difficulties, setDifficulties] = useState([]);
     // rename, a bit stupid
@@ -31,10 +30,10 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
     const [userError, setUserError] = useState(null);
 
     const searchQuery = useRef(null);
-    const selectRef = useRef("")
-    const selectRef2 = useRef("")
-    const selectRef3 = useRef("")
-    const selectRef4 = useRef("")
+    const selectRef = useRef("");
+    const selectRef2 = useRef("");
+    const selectRef3 = useRef("");
+    const selectRef4 = useRef("");
 
     const { data, error, isLoading, handleSearch, resetSearch } = useFetch(staticData, APIurl);
 
@@ -57,6 +56,7 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
         console.log("handleSubmit ran");
         let trimmedQuery = searchQuery.current.value.trim();
         setUserError(null);
+        setShowMobileFilters(false);
         // if (!trimmedQuery || trimmedQuery.length < 2 || !isNaN(trimmedQuery)) {
         //     // resetSearch()
         //     setUserError("Please enter a valid search term")
@@ -105,11 +105,17 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
         selectRef3.current.select.clearValue();
         selectRef4.current.select.clearValue();
     }
+    // let showMobileFiltersClass;
+    // if (showMobileFilters) {
+    //     showMobileFiltersClass = "show";
+    // } else {
+    //     showMobileFiltersClass = "";
+    // }
 
     return (
         <>
             <SearchSection initial={{ opacity: 0.2 }} animate={{ opacity: 1 }} >
-                {/* <h2>Let's get searching</h2> */}
+                <h2>Let's get searching</h2>
                 <SearchFormWrapper>
                     <SearchForm onSubmit={handleSubmit}>
                         <SearchBox type="text" placeholder="Enter a search term..." ref={searchQuery} ></SearchBox>
@@ -137,13 +143,17 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
 
                 </PageSortWrapper> */}
                 {userError && (<RegularText style={{ textAlign: "center" }}>{userError}</RegularText>)}
+
+                <FilterIconWrapper onClick={() => { setShowMobileFilters(!showMobileFilters) }} >
+                    <BsFilter />
+                </FilterIconWrapper>
             </SearchSection>
 
             {/* {!userError && ? (<ResultsHeading initial={{ opacity: 0.2 }} animate={{ opacity: 1 }}>Results</ResultsHeading>): null} */}
 
 
             <ResultsSection>
-                <SearchFilters>
+                <SearchFilters show={showMobileFilters}>
                     <h4>Filters</h4>
                     <Select
                         ref={selectRef}
@@ -191,7 +201,7 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
                         onChange={values => setLights(values.map(light => light.value.toLowerCase()))}
                     />
                     <DiscreetBtn onClick={clearFilters}>Reset filters</DiscreetBtn>
-                    <CtaBtn onClick={handleSubmit}>Update search</CtaBtn>
+                    <CtaBtn onClick={handleSubmit}>Update results</CtaBtn>
                 </SearchFilters>
 
                 <ResultsGrid>

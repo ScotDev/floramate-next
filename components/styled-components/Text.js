@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { motion } from "framer-motion";
-// import { device } from '../../config/Breakpoints';
+// import { device } from '@config/Breakpoints';
 
 
 // This all needs to be made more consistent across the site, far too many custom font-size etc are used to override these properties

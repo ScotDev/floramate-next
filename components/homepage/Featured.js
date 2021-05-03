@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import Card from '../search/Card';
-import { ResultsGrid } from '../styled-components/Utils';
+import { FeaturedGrid } from '../styled-components/Utils';
 import { LinkBtn } from '../styled-components/Button';
 import { BsArrowRightShort } from 'react-icons/bs';
 
@@ -28,9 +28,9 @@ export default function Featured({ data }) {
     }
 
     return (<>
-        <ResultsGrid>
+        <FeaturedGrid>
             {items}
-        </ResultsGrid>
+        </FeaturedGrid>
         <Link href="/species"><LinkBtn>Browse more<BsArrowRightShort /></LinkBtn></Link>
     </>)
 }

@@ -1,10 +1,7 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
-import { QueryClientProvider, QueryClient } from 'react-query';
 
 import Search from '@components/search/Search';
-
-const queryClient = new QueryClient();
 
 export default function Species({ profiles, plantTypeFilters, difficultyFilters, moistureFilters, lightFilters }) {
 
@@ -21,9 +18,7 @@ export default function Species({ profiles, plantTypeFilters, difficultyFilters,
     return (
         <>
             <NextSeo {...pageSEO}></NextSeo>
-            <QueryClientProvider client={queryClient}>
-                <Search staticData={profiles} difficultyFilters={difficultyFilters} plantTypeFilters={plantTypeFilters} moistureFilters={moistureFilters} lightFilters={lightFilters} />
-            </QueryClientProvider>
+            <Search staticData={profiles} difficultyFilters={difficultyFilters} plantTypeFilters={plantTypeFilters} moistureFilters={moistureFilters} lightFilters={lightFilters} />
         </>
     )
 }

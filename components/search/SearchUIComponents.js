@@ -1,7 +1,19 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion } from "framer-motion";
 
 import { device } from '@config/Breakpoints';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+`;
 
 const SearchSection = styled(motion.div)`
   /* background: url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1616435022/search_bg_2616e6cf8c.jpg"); */
@@ -27,7 +39,7 @@ const SearchSection = styled(motion.div)`
       }
 
     @media ${device.mobileL}  {
-      padding: 175px 0 100px;
+      padding: 175px 0 0 0;
   }
 `
 const SearchFormWrapper = styled.div`
@@ -167,19 +179,23 @@ const SearchFilters = styled.div`
     padding: 0 0.75rem;
     width: 100%;
     colum-gap: 1rem; */
-    padding: 1rem;
-    margin: 0;
-    display: none;
     flex-direction: column;
+    padding: 1.5rem 1rem 0;
+    margin: 0;
+    height: ${props => props.show ? "auto" : "0px"};
+    overflow: hidden;
+    display: ${props => props.show ? "flex" : "none"};
+    box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
+    0 3px 7px -3px rgb(0 0 0 / 30%);
+    animation: ${fadeIn} 0.35s ease-in;
 
     h4  {
-      display: none;
+      font-size: 1.3rem;
     }
 
-
     button:last-of-type {
-    margin-top: 0;
-    font-size: 1.2rem;
+    margin-top: 1rem;
+    font-size: 1.3rem;
     font-weight: 400;
     align-self: center;
   }
@@ -219,12 +235,67 @@ const ResultsSection = styled.div`
     & > :first-child  {
     width: 100%;
     border-right: none;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 3px solid ${props => props.theme.secondaryColourLight};
+    margin-bottom: 2rem;
   }
 
   & > :last-child {
     width: 100%;
   }
+  }
+`;
+
+const ResultsGrid = styled.div`
+position: relative;
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-auto-rows: 450px;
+  justify-items: start;
+  /* grid-auto-flow: row; */
+  /* display: flex;
+  padding: 2rem 1rem;
+  margin: 0 auto;
+  flex-wrap: wrap; */
+  align-items: center;
+  /* justify-content: center; */
+  /* background-image: linear-gradient(to bottom, #051937, #003752, #125767, #3b7777, #689686); */
+  /* background-image: linear-gradient(to bottom, #2f3e46, #39535a, #44696c, #53807b, #689686); */
+
+  /* & > * {
+    flex: 1 1 100%;
+    min-width: 300px;
+    max-width: 340px;
+  } */
+
+  @media ${device.tablet}{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+
+div.spinner {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%,-50%);
+  /* grid-column: 2 / span 2 */
+  /* margin: 0 auto; */
+}
+
+`
+
+const FilterIconWrapper = styled.div`
+  display: none;
+  font-size: 2.5rem;
+  color: ${props => props.theme.primaryText};
+  margin: 2rem 0 0 0;
+
+  @media ${device.tablet} {
+    display: block;
   }
 `;
 
@@ -418,4 +489,4 @@ const InnerCardGrid = styled.div`
 `
 
 
-export { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFilters, ResultsSection, StyledSelect, PageSortWrapper, ResultsHeading, ResultsCard, InnerCardGrid };
+export { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFilters, ResultsSection, ResultsGrid, StyledSelect, PageSortWrapper, ResultsHeading, FilterIconWrapper, ResultsCard, InnerCardGrid };

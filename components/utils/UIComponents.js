@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { device } from '../../config/Breakpoints';
+import { device } from '@config/Breakpoints';
 
 // import { motion } from "framer-motion";
 
