@@ -253,7 +253,7 @@ position: relative;
   /* grid-template-columns: repeat(4, 1fr); */
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   grid-auto-rows: 450px;
-  justify-items: start;
+  justify-items: center;
   /* grid-auto-flow: row; */
   /* display: flex;
   padding: 2rem 1rem;
