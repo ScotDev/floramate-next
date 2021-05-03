@@ -141,6 +141,8 @@ const SearchFilters = styled.div`
     margin: 0;
     font-weight: 400;
     align-self: flex-end;
+    border: none;
+    box-shadow: none;
   }
 
   button:last-of-type {
@@ -154,7 +156,13 @@ const SearchFilters = styled.div`
     margin-bottom: 1.5rem;
   }
 
-  @media ${device.tablet}  {
+  @media ${device.laptopL}{
+    button:last-of-type {
+    font-size: 1.2rem;
+  }
+  }
+
+  @media ${device.laptop}  {
     /* margin: 1.5rem 0 0 0;
     padding: 0 0.75rem;
     width: 100%;
@@ -197,15 +205,15 @@ const ResultsSection = styled.div`
 
   @media ${device.laptopL}{
     & > :first-child  {
-    width: 30%;
+    width: 25%;
   }
 
   & > :last-child {
-    width: 70%;
+    width: 75%;
   }
   }
 
-  @media ${device.tablet}{
+  @media ${device.laptop}{
     flex-direction: column;
 
     & > :first-child  {
@@ -300,7 +308,6 @@ const ResultsCard = styled(motion.div)`
   background-color: #fff;
   color: ${props => props.theme.primaryColour};
   min-height: 375px;
-  height: fit-content;
   overflow: hidden;
   /* max-width: 300px; */
   margin: 0.9rem;

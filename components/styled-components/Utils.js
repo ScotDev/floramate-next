@@ -226,29 +226,33 @@ const FlexBox = styled(motion.div)`
 `;
 
 const ResultsGrid = styled.div`
-  display: flex;
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-auto-rows: 450px;
+  justify-items: start;
+  /* grid-auto-flow: row; */
+  /* display: flex;
   padding: 2rem 1rem;
   margin: 0 auto;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
   /* align-items: center; */
   /* justify-content: center; */
   /* background-image: linear-gradient(to bottom, #051937, #003752, #125767, #3b7777, #689686); */
   /* background-image: linear-gradient(to bottom, #2f3e46, #39535a, #44696c, #53807b, #689686); */
 
-  & > * {
+  /* & > * {
     flex: 1 1 100%;
     min-width: 300px;
     max-width: 340px;
-  }
+  } */
 
   @media ${device.tablet}{
       display: flex;
       flex-direction: column;
-      /* justify-content: center; */
       align-items: center;
-    /* flex: 1 1 20%; */
-      padding: 1rem;
-      margin: 0;
     }
 
 
