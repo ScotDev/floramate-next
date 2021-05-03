@@ -9,8 +9,8 @@ import Spinner from '@utils/Spinner';
 import Card from './Card';
 import { ResultsGrid } from '@shared-styled-components/Utils';
 import { RegularText } from '@shared-styled-components/Text';
-import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, StyledSelect, PageSortWrapper, ResultsHeading } from './SearchUIComponents';
-import { DiscreetBtn } from '@shared-styled-components/Button';
+import { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFilters, ResultsSection, StyledSelect, PageSortWrapper, ResultsHeading } from './SearchUIComponents';
+import { CtaBtn, DiscreetBtn } from '@shared-styled-components/Button';
 
 const APIurl = "https://floramate-cms.herokuapp.com/profiles";
 
@@ -44,8 +44,6 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
     const [light, setLight] = useState("")
     const [moisture, setMoisture] = useState("")
 
-
-
     useEffect(() => {
         if (error) {
             setUserError(error)
@@ -59,11 +57,11 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
         console.log("handleSubmit ran");
         let trimmedQuery = searchQuery.current.value.trim();
         setUserError(null);
-        if (!trimmedQuery || trimmedQuery.length < 2 || !isNaN(trimmedQuery)) {
-            // resetSearch()
-            setUserError("Please enter a valid search term")
-            return;
-        }
+        // if (!trimmedQuery || trimmedQuery.length < 2 || !isNaN(trimmedQuery)) {
+        //     // resetSearch()
+        //     setUserError("Please enter a valid search term")
+        //     return;
+        // }
 
         // Doesn't search if filters are valid but no valid search term. Should I change this?
 
@@ -74,20 +72,6 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
         // }
         handleSearch(trimmedQuery, { type: plantTypes, difficulty: difficulties, moisture: moistures, light: lights })
     }
-
-
-    // if (light.length > 0) {
-    //     lightFilter = `&light_requirements=${light}`;
-    // } else {
-    //     lightFilter = "";
-    // }
-
-    // if (moisture.length > 0) {
-    //     moistureFilter = `&water_requirements=${moisture}`;
-    // } else {
-    //     moistureFilter = "";
-    // }
-
 
     let items;
     if (data.length > 0) {
@@ -112,9 +96,10 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
         setMoisture(e.target.value)
     }
 
+    // This shouldn't reset search, it should only clear filters. Clearing the search should be handled separately.
     const clearFilters = () => {
         resetSearch();
-        searchQuery.current.value = "";
+        // searchQuery.current.value = "";
         selectRef.current.select.clearValue();
         selectRef2.current.select.clearValue();
         selectRef3.current.select.clearValue();
@@ -130,55 +115,6 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
                         <SearchBox type="text" placeholder="Enter a search term..." ref={searchQuery} ></SearchBox>
                         {/* <AiOutlineSearch /> */}
                     </SearchForm>
-                    <SearchFormFilters>
-
-                        <Select
-                            ref={selectRef}
-                            getOptionLabel={option => option.value}
-                            getOptionValue={option => option._id}
-                            options={plantTypeFilters}
-                            instanceId="plantTypes"
-                            isMulti
-                            isClearable
-                            placeholder="Plant types..."
-                            onChange={values => setPlantTypes(values.map(type => type.value))}
-                        />
-
-                        <Select
-                            ref={selectRef2}
-                            getOptionLabel={option => option.value}
-                            getOptionValue={option => option._id}
-                            options={difficultyFilters}
-                            instanceId="difficulties"
-                            isMulti
-                            isClearable
-                            placeholder="Difficulty..."
-                            onChange={values => setDifficulties(values.map(difficulty => difficulty.value))}
-                        />
-                        <Select
-                            ref={selectRef3}
-                            getOptionLabel={option => option.value}
-                            getOptionValue={option => option._id}
-                            options={moistureFilters}
-                            instanceId="moistures"
-                            isMulti
-                            isClearable
-                            placeholder="Moisture..."
-                            onChange={values => setMoistures(values.map(moisture => moisture.value.toLowerCase()))}
-                        />
-                        <Select
-                            ref={selectRef4}
-                            getOptionLabel={option => option.value}
-                            getOptionValue={option => option._id}
-                            options={lightFilters}
-                            instanceId="lights"
-                            isMulti
-                            isClearable
-                            placeholder="Light..."
-                            onChange={values => setLights(values.map(light => light.value.toLowerCase()))}
-                        />
-                    </SearchFormFilters>
-                    <DiscreetBtn onClick={clearFilters}>Reset search</DiscreetBtn>
                     <SearchBtn type="submit" onClick={handleSubmit}>Search</SearchBtn>
 
                 </SearchFormWrapper>
@@ -198,16 +134,70 @@ export default function Search({ staticData, plantTypeFilters, difficultyFilters
                         <option value="DESC">Latin name DESC</option>
                     </StyledSelect>
 
+
                 </PageSortWrapper> */}
+                {userError && (<RegularText style={{ textAlign: "center" }}>{userError}</RegularText>)}
             </SearchSection>
 
             {/* {!userError && ? (<ResultsHeading initial={{ opacity: 0.2 }} animate={{ opacity: 1 }}>Results</ResultsHeading>): null} */}
 
-            {userError && (<RegularText style={{ textAlign: "center" }}>{userError}</RegularText>)}
 
-            <ResultsGrid>
-                {isLoading ? (<Spinner />) : items}
-            </ResultsGrid>
+            <ResultsSection>
+                <SearchFilters>
+                    <h4>Filters</h4>
+                    <Select
+                        ref={selectRef}
+                        getOptionLabel={option => option.value}
+                        getOptionValue={option => option._id}
+                        options={plantTypeFilters}
+                        instanceId="plantTypes"
+                        isMulti
+                        isClearable
+                        placeholder="Plant types..."
+                        onChange={values => setPlantTypes(values.map(type => type.value))}
+                    />
+
+                    <Select
+                        ref={selectRef2}
+                        getOptionLabel={option => option.value}
+                        getOptionValue={option => option._id}
+                        options={difficultyFilters}
+                        instanceId="difficulties"
+                        isMulti
+                        isClearable
+                        placeholder="Difficulty..."
+                        onChange={values => setDifficulties(values.map(difficulty => difficulty.value))}
+                    />
+                    <Select
+                        ref={selectRef3}
+                        getOptionLabel={option => option.value}
+                        getOptionValue={option => option._id}
+                        options={moistureFilters}
+                        instanceId="moistures"
+                        isMulti
+                        isClearable
+                        placeholder="Moisture..."
+                        onChange={values => setMoistures(values.map(moisture => moisture.value.toLowerCase()))}
+                    />
+                    <Select
+                        ref={selectRef4}
+                        getOptionLabel={option => option.value}
+                        getOptionValue={option => option._id}
+                        options={lightFilters}
+                        instanceId="lights"
+                        isMulti
+                        isClearable
+                        placeholder="Light..."
+                        onChange={values => setLights(values.map(light => light.value.toLowerCase()))}
+                    />
+                    <DiscreetBtn onClick={clearFilters}>Reset filters</DiscreetBtn>
+                    <CtaBtn onClick={handleSubmit}>Update search</CtaBtn>
+                </SearchFilters>
+
+                <ResultsGrid>
+                    {isLoading ? (<Spinner />) : items}
+                </ResultsGrid>
+            </ResultsSection>
         </>
     )
 }

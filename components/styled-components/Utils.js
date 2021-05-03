@@ -227,11 +227,11 @@ const FlexBox = styled(motion.div)`
 
 const ResultsGrid = styled.div`
   display: flex;
-  padding: 2rem;
+  padding: 2rem 1rem;
   margin: 0 auto;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   /* background-image: linear-gradient(to bottom, #051937, #003752, #125767, #3b7777, #689686); */
   /* background-image: linear-gradient(to bottom, #2f3e46, #39535a, #44696c, #53807b, #689686); */
 
@@ -239,14 +239,18 @@ const ResultsGrid = styled.div`
     flex: 1 1 100%;
     min-width: 300px;
     max-width: 340px;
-
-    /* @media ${device.laptopL}{
-    flex: 1 1 20%;
-    } */
-
   }
 
-/* Dev only */
+  @media ${device.tablet}{
+      display: flex;
+      flex-direction: column;
+      /* justify-content: center; */
+      align-items: center;
+    /* flex: 1 1 20%; */
+      padding: 1rem;
+      margin: 0;
+    }
+
 
 img#spinner{
   margin: 0 auto;

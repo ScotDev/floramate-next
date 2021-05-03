@@ -8,11 +8,14 @@ const useFetch = (initialData, endpointURL) => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const [hasQuery, setHasQuery] = useState(false);
+    // const [hasQuery, setHasQuery] = useState(false);
+
+    const [rawQuery, setRawQuery] = useState("")
 
     // Processes queries and filter params into usable strings
     // to pass to a data fetching function
     const handleSearch = async (query, filterObject) => {
+
 
         const { type, difficulty, moisture, light } = filterObject;
 
@@ -26,13 +29,13 @@ const useFetch = (initialData, endpointURL) => {
         // and reusable, but just try to get it working with keys hardcoded
 
         const types = await type.map(val => `type=${val}`);
-        const typeFilterString = await types.join("&");
+        const typeFilterString = await types.join("&") + "&";
 
         const difficulties = await difficulty.map(val => `difficulty=${val}`);
-        const difficultyFilterString = await difficulties.join("&");
+        const difficultyFilterString = await difficulties.join("&") + "&";
 
         const moistures = await moisture.map(val => `water_requirements=${val}`);
-        const moisturesFilterString = await moistures.join("&");
+        const moisturesFilterString = await moistures.join("&") + "&";
 
         const lights = await light.map(val => `water_requirements=${val}`);
         const lightsFilterString = await lights.join("&");
@@ -40,25 +43,27 @@ const useFetch = (initialData, endpointURL) => {
         //     console.log(type[x])
         //     types += `type=${type[x]}`
 
-        // This maybe doesn't need to be in state, but I'm not usre
-        let queryParam;
-        if (query.length > 0 || query !== undefined || !isNaN(query)) {
-            queryParam = "q=" + query + "&";
-        }
-        //  else if (query === undefined) {
-        //     queryParam = "";
-        // }
 
-        setUrl(endpointURL + "?_" + queryParam + typeFilterString + difficultyFilterString + moisturesFilterString + lightsFilterString);
-        setHasQuery(true);
+        let queryParam;
+        if (query.length > 0 && query !== undefined && query !== null) {
+            queryParam = "_q=" + query + "&";
+        } else {
+            queryParam = "";
+        }
+        setRawQuery(queryParam);
+        console.log("Query: ", query)
+        console.log("Query param: ", queryParam)
+
+        setUrl(endpointURL + "?" + queryParam + typeFilterString + difficultyFilterString + moisturesFilterString + lightsFilterString);
+        // setHasQuery(true);
 
         console.log("handleSearch ran")
     }
 
     const resetSearch = () => {
-        setHasQuery(false);
-        setUrl(endpointURL);
-        setData(initialData);
+        // setHasQuery(false);
+        setUrl(endpointURL + "?" + rawQuery);
+        console.log("resetSearch ran")
     }
 
     useEffect(() => {
@@ -93,7 +98,7 @@ const useFetch = (initialData, endpointURL) => {
         };
         fetchData();
         console.log("fetchData ran: ", url)
-    }, [url, hasQuery]);
+    }, [url]);
 
     return { data, error, isLoading, handleSearch, resetSearch };
 };

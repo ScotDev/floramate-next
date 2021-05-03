@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { motion } from "framer-motion";
 
-import { device } from '../../config/Breakpoints';
+import { device } from '@config/Breakpoints';
 
 const SearchSection = styled(motion.div)`
   /* background: url("https://res.cloudinary.com/hyqgfnvpb/image/upload/v1616435022/search_bg_2616e6cf8c.jpg"); */
@@ -13,13 +13,13 @@ const SearchSection = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 150px 0 3rem 0;
+  padding: 200px 0 100px 0;
   margin: 0;
   text-align: center;
   /* box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
     0 3px 7px -3px rgb(0 0 0 / 30%); */
 
-    h2{ 
+    h2 { 
       font-size: ${props => props.theme.size.title};
       color: ${props => props.theme.primaryText};
       margin: 0;
@@ -27,7 +27,7 @@ const SearchSection = styled(motion.div)`
       }
 
     @media ${device.mobileL}  {
-      padding: 175px 0 3rem 0;
+      padding: 175px 0 100px;
   }
 `
 const SearchFormWrapper = styled.div`
@@ -46,7 +46,7 @@ const SearchFormWrapper = styled.div`
 const SearchForm = styled.form`
   display: flex;
   width: 100%;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
   padding: 0 2rem;
 
   @media ${device.mobileL} {
@@ -114,22 +114,109 @@ const SearchBtn = styled.button`
 
 `
 
-const SearchFormFilters = styled.div`
-  margin: 1.5rem 0 0 0;
-  padding: 0 2rem;
-  display: grid;
+const SearchFilters = styled.div`
+  margin: 1.5rem 0;
+  padding: 1rem 2rem;
+  /* display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(2, 0.5fr);
-  width: 100%;
-  /* font-size: ${props => props.theme.size.regularText}; */
+  grid-template-columns: repeat(2, 50%); */
+
+  display: flex;
+  flex-direction: column;
   font-size: clamp(0.9rem, 1.1rem, 3rem);
 
-  @media ${device.mobileL}  {
-    margin: 1.5rem 0 0 0;
+  h4 {
+    all: unset;
+    font-size: ${props => props.theme.size.largeText};
+    align-self: center;
+    padding-bottom: 1.75rem;
+    color: ${props => props.theme.primaryText};
+  }
+
+  
+  button:first-of-type {
+    margin-top: 0;
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    align-self: flex-end;
+  }
+
+  button:last-of-type {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    align-self: center;
+  }
+
+  & > * {
+    margin-bottom: 1.5rem;
+  }
+
+  @media ${device.tablet}  {
+    /* margin: 1.5rem 0 0 0;
     padding: 0 0.75rem;
     width: 100%;
-    colum-gap: 1rem;
+    colum-gap: 1rem; */
+    padding: 1rem;
+    margin: 0;
+    display: none;
+    flex-direction: column;
 
+    h4  {
+      display: none;
+    }
+
+
+    button:last-of-type {
+    margin-top: 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    align-self: center;
+  }
+
+  }
+`;
+
+const ResultsSection = styled.div`
+  display:flex;
+  padding: 0;
+  margin: 0;
+  background-color: ${props => props.theme.secondaryBlue};
+  min-height: 100vh;
+
+  & > :first-child  {
+    width: 20%;
+    border-right: 1px solid lightgray;
+  }
+
+  & > :last-child {
+    width: 80%;
+  }
+
+  @media ${device.laptopL}{
+    & > :first-child  {
+    width: 30%;
+  }
+
+  & > :last-child {
+    width: 70%;
+  }
+  }
+
+  @media ${device.tablet}{
+    flex-direction: column;
+
+    & > :first-child  {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid lightgray;
+  }
+
+  & > :last-child {
+    width: 100%;
+  }
   }
 `;
 
@@ -324,4 +411,4 @@ const InnerCardGrid = styled.div`
 `
 
 
-export { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFormFilters, StyledSelect, PageSortWrapper, ResultsHeading, ResultsCard, InnerCardGrid };
+export { SearchSection, SearchFormWrapper, SearchForm, SearchBox, SearchBtn, SearchFilters, ResultsSection, StyledSelect, PageSortWrapper, ResultsHeading, ResultsCard, InnerCardGrid };

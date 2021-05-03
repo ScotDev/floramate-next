@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { motion } from "framer-motion";
 
-import { device } from '../../config/Breakpoints';
+import { device } from '@config/Breakpoints';
+
+// Button naming system needs a rework, these have all been changed
+// far past the original structure. Other things more important for now.
 
 const StyledBtn = styled(motion.button)`
   border-radius: ${props => props.theme.borderRadius};
@@ -28,18 +31,18 @@ const StyledBtn = styled(motion.button)`
   }
 `
 
-const PrimaryBtn = styled(StyledBtn)`
-  color: ${props => props.theme.primaryColour || "#f7fffb"};
-  background-color:  ${props => props.theme.primaryText || "#487161"};
-  border: 2px solid ${props => props.theme.primaryColour || "#f7fffb"};
-  font-weight: bold;
+// const PrimaryBtn = styled(StyledBtn)`
+//   color: ${props => props.theme.primaryColour};
+//   background-color:  ${props => props.theme.primaryText};
+//   border: 2px solid ${props => props.theme.primaryColour};
+//   font-weight: bold;
 
-  &:hover, &:focus {
-    color:  ${props => props.theme.primaryText || "#487161"};
-    background-color: ${props => props.theme.primaryColour || "#f7fffb"};
-    border: 2px solid  ${props => props.theme.primaryColour || "#487161"};
-  }
-  `;
+//   &:hover, &:focus {
+//     color:  ${props => props.theme.primaryText};
+//     background-color: ${props => props.theme.primaryColour};
+//     border: 2px solid  ${props => props.theme.primaryColour};
+//   }
+//   `;
 
 const SecondaryBtn = styled(StyledBtn)`
   color: ${props => props.theme.primaryColour};
@@ -149,4 +152,4 @@ button:nth-of-type(1) {
 `;
 
 
-export { StyledBtn, PrimaryBtn, SecondaryBtn, CtaBtn, LinkBtn, BtnGroup, InfoBtn, DiscreetBtn };
+export { StyledBtn, SecondaryBtn, CtaBtn, LinkBtn, BtnGroup, InfoBtn, DiscreetBtn };
