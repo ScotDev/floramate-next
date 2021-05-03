@@ -294,7 +294,7 @@ const FilterIconWrapper = styled.div`
   color: ${props => props.theme.primaryText};
   margin: 2rem 0 0 0;
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     display: block;
   }
 `;
