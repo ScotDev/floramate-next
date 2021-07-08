@@ -228,7 +228,7 @@ const FlexBox = styled(motion.div)`
 const FeaturedGrid = styled.div`
   display: grid;
   /* align-items: center; */
-  padding: 1rem 0;
+  padding: 1rem 2rem;
   width: 100%;
 
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));

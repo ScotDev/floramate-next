@@ -6,6 +6,7 @@ import { SliderContainer } from './UIComponents';
 export default function ImageSlider({ data }) {
     const ImagesData = data;
 
+
     const [currentImage, setCurrentImage] = useState(0);
     const length = ImagesData.length;
 
@@ -25,9 +26,10 @@ export default function ImageSlider({ data }) {
         <SliderContainer>
             {length > 1 && <GrPrevious id="left-arrow" onClick={prevSlide} />}
             {ImagesData.map((image, index) => {
+                console.log(image)
                 return (
                     <>
-                        { index === currentImage && (<img key={image._id} src={image.formats.large.url} alt={image.alternativeText} />)}
+                        {index === currentImage && (<img key={image._id} src={image.formats.medium.url} alt={image.alternativeText} />)}
                     </>)
             })}
             {length > 1 && <GrNext id="right-arrow" onClick={nextSlide} />}
